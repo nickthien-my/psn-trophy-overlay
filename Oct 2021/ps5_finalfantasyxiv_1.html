@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+@font-face {
+  font-family: 'Helvetica Neue LT Roman';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Helvetica Neue LT Roman'), url('Helvetica Neue LT 55 Roman.woff') format('woff');
+}
+
+body {
+  width: 1920px;
+  font-family:'Helvetica Neue LT Roman';
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  background-image: url("./splash/ps5_finalfantasyxiv_1.png");
+  filter: brightness(0.5) blur(5px);
+  z-index: -1;
+}
+
+.columnInfo {
+  position: absolute;
+  top: 75px;
+  right: 0px;
+  width: 467px;
+  height: 100%;
+  padding: 0px 30px;
+}
+
+.carousel-item {
+  height: 80px;
+}
+
+.row {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 80px;
+}
+
+.logo {
+  position: relative;
+  top: 10px;
+  height: 60px;
+}
+
+.nowPlaying {
+  padding-top: 11px;
+  font-size: 24px;
+  line-height: 0.7;
+  color: #a1a1a1;
+}
+
+.gameName {
+  font-size: 30px;
+  line-height: 0.7;
+  color: #e0e0e0;
+}
+
+.trophiesLeft {
+  padding-top: 10px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.trophyCard {
+  position: relative;
+  width: 415px;
+  height: 130px;
+  padding: 15px 25px;
+  margin: 12px 0px;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, rgba(10, 13, 18, 0.8), rgba(8, 11, 16, 0.8));
+  z-index: 1;
+}
+
+img.trophyLogo {
+  position: relative;
+  height: 25px;
+  float: left;
+  display: inline-block;
+}
+
+.trophyInfo {
+  position: relative;
+  left: 20px;
+}
+
+.trophyName {
+  font-size: 20px;
+  padding-top: 2px;
+  padding-left: 35px;
+  line-height: 1;
+}
+
+.trophyDescription {
+  font-size: 22px;
+  line-height: 1.2;
+  color: #f2f2f2;
+}
+
+.white {
+  color: white;
+}
+
+.gold {
+  color: #ffd700;
+}
+
+.silver {
+  color: #c0c0c0;
+}
+
+.bronze {
+  color: #cd7f32;
+}
+
+img .hiddenimg {
+  filter: grayscale(0.5) opacity(0.5);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+p.hidden:before {
+  visibility: visible;
+  content: "Hidden Trophy";
+  color: #dcdcdc;
+  filter: opacity(0.5)
+}
+
+  </style>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Final Fantasy XIV</title>
+  </head>
+  <body>
+<div class="row">
+
+  <div class="col-lg-5 px-5">
+    <p class="nowPlaying">Now Playing</p>
+    <p class="gameName">Final Fantasy XIV [PS5]</p>
+  </div>
+
+  <div class="col-lg-2">
+    <img class="logo mx-auto d-block" src="./gameLogos/ps5_finalfantasyxiv_1.png">
+  </div>
+
+  <div class="col-lg-5 px-5 text-end">
+    <p class="nowPlaying">Earned</p>
+    <p class="gameName">0 <span style="font-size: 26px;">of</span> 53 Trophies</p>
+  </div>
+</div>
+
+
+<div class="columnInfo">
+
+  <div class="trophyCard">
+    <div class="tcTop">
+      <img src="https://i.psnprofiles.com/games/10c1f3/trophies/12L660fe3.png" class="trophyLogo">
+      <p class="trophyName bronze">The Art of War I</p>
+    </div>
+    <div class="tcBot">
+      <p class="trophyDescription">Reach level 50 with any Disciple of War or Magic.</p>
+    </div>
+  </div>
+
+  <div class="trophyCard">
+    <div class="tcTop">
+      <img src="https://i.psnprofiles.com/games/10c1f3/trophies/13Lafb2fd.png" class="trophyLogo" style="">
+      <p class="trophyName bronze">The Art of War II</p>
+    </div>
+    <div class="tcBot">
+      <p class="trophyDescription">Reach level 60 with any Disciple of War or Magic.</p>
+    </div>
+  </div>
+
+  <div class="trophyCard">
+    <div class="tcTop">
+      <img src="https://i.psnprofiles.com/games/10c1f3/trophies/2La33d47.png" class="trophyLogo hiddenimg">
+      <p class="trophyName bronze">A Realm Reborn</p>
+    </div>
+    <div class="tcBot">
+      <p class="trophyDescription hidden">Complete the main scenario quest \"The Ultimate Weapon.\"</p>
+    </div>
+  </div>
+
+  <div class="trophyCard">
+    <div class="tcTop">
+      <img src="https://i.psnprofiles.com/games/10c1f3/trophies/3L758e2d.png" class="trophyLogo hiddenimg">
+      <p class="trophyName bronze">A Realm Awoken</p>
+    </div>
+    <div class="tcBot">
+      <p class="trophyDescription hidden">Complete the main scenario quest \"Build on the Stone.\"</p>
+    </div>
+  </div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="https://i.psnprofiles.com/games/10c1f3/trophies/4Le809c2.png" class="trophyLogo hiddenimg">
+    <p class="trophyName bronze">Through the Maelstrom</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription hidden">Complete the main scenario quest \"Through the Maelstrom.\"</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="https://i.psnprofiles.com/games/10c1f3/trophies/14L312358.png" class="trophyLogo">
+    <p class="trophyName bronze">The Art of War III</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription">Reach level 70 with any Disciple of War or Magic.</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="https://i.psnprofiles.com/games/10c1f3/trophies/5Lf4ef59.png" class="trophyLogo hiddenimg">
+    <p class="trophyName bronze">Defenders of Eorzea</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription hidden">Complete the main scenario quest \"Brave New Companions.\"</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/e7541487652.png" class="trophyLogo" style="filter: grayscale(0.5) opacity(0.5);">
+    <p class="trophyName bronze">The Hidden City</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription hidden">Find Paititi</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/c90d1487620.png" class="trophyLogo">
+    <p class="trophyName bronze">Asking Price</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription">Buy an item from a merchant</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/69a91487621.png" class="trophyLogo">
+    <p class="trophyName bronze">Tables Turned</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription">Kill 5 enemies while they are searching for Lara</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/20e1148768.png" class="trophyLogo">
+    <p class="trophyName bronze">Like a Shadow</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription">Perform a Stealth Takedown on 25 enemies</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/dd2b1487653.png" class="trophyLogo" style="filter: grayscale(0.5) opacity(0.5);">
+    <p class="trophyName bronze">The Underworld</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription hidden">Get out of the Cenote alive</p>
+  </div>
+</div>
+
+<div class="trophyCard">
+  <div class="tcTop">
+    <img src="./trophyIcons/Shadow of the Tomb Raider/56c31487639.png" class="trophyLogo">
+    <p class="trophyName bronze">First Blood</p>
+  </div>
+  <div class="tcBot">
+    <p class="trophyDescription">Perform a Stealth Takedown from a mud-covered wall</p>
+  </div>
+</div>
+
+</div>
+<div class="background"></div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

@@ -1,0 +1,327 @@
+@font-face {
+  font-family: 'HelveticaNeueLTRoman';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Helvetica Neue LT Roman'), url('Helvetica Neue LT 55 Roman.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueLTProTh' ;
+    src: url("HelveticaNeueLTProTh.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'HelveticaNeueLTProCn' ;
+    src: url("HelveticaNeueLTProCn.otf") format("opentype");
+}
+
+body {
+  width: 1920px;
+  text-shadow: 1px 1px black;
+  background-color: blue;
+}
+
+.row {
+}
+
+.columnLeft {
+  position: absolute;
+  left: 0px;
+  float: left;
+}
+
+.columnRight {
+  position: absolute;
+  right: 0px;
+}
+
+.trophiesLeft {
+  padding-top: 10px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.t {
+  position: relative;
+  left: -310px;
+}
+
+.u {
+  position: relative;
+  right: -310px;
+}
+
+.activeLeft {
+  position: relative;
+  animation:activateLeft 10s;
+}
+
+.activeRight {
+  position: relative;
+  animation:activateRight 10s;
+}
+
+@keyframes activateLeft {
+  0%,90% { left: -310px }
+  10%, 50%, 80% { left: 0px }
+}
+
+@keyframes activateRight {
+  0%,90% { right: -310px }
+  10%, 50%, 80% { right: 0px }
+}
+
+.trophiesInfo {
+  position: absolute;
+  top: 312px;
+  width: 1920px;
+}
+
+.gameInfo {
+  position: relative;
+  width: 416px;
+  height: 25px;
+  clear: both;
+}
+
+.gameLogoContainer  {
+  position: relative;
+  padding-top: 10px;
+  height: 80px;
+  background-image: linear-gradient(rgb(24,24,24,1), rgb(10,10,10,0.25));
+}
+
+.gameLogo {
+  height: 56px;
+}
+
+.gameInfoNowPlayingContainer {
+  position: relative;
+  height: 80px;
+  border-radius: 0 0 0 8px;
+  padding: 10px 50px;
+  background-image: linear-gradient(rgb(24,24,24,1), rgb(24,24,24,0.25))}
+
+.gameTrophyEarnedContainer {
+  position: relative;
+  text-align: right;
+  height: 80px;
+  border-radius: 0 0 8px 0;
+  padding: 10px 50px;
+  background-image: linear-gradient(rgb(24,24,24,1), rgb(24,24,24,0.25))}
+
+.nowPlaying {
+  position: relative;
+  font-size: 23px;
+  color: #B8B8B8;
+}
+
+.gameName {
+  position: relative;
+  top: -25px;
+  font-size: 25px;
+  color: #e0e0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophyFraction {
+  position: relative;
+  top: -25px;
+  font-size: 25px;
+  color: #e0e0e0;
+}
+
+.columnLeftHeaderTop {
+  position: relative;
+  font-size: 30px;
+  color: #e0e0e0;
+  text-align: right;
+  border-bottom: 2px solid grey;
+}
+
+.columnLeftHeaderBottom {
+  position: relative;
+  font-size: 25px;
+  color: #e0e0e0;
+  text-align: right;
+  margin-top: 15px;
+  padding-top: 5px;
+  border-top: 2px solid grey;
+}
+
+.columnRightHeaderTop {
+  position: relative;
+  font-size: 30px;
+  color: #e0e0e0;
+  text-align: left;
+  border-bottom: 2px solid grey;
+}
+
+.trophyCardLeft {
+  position: relative;
+  width: 320px;
+  height: 65px;
+  padding: 20px 25px;
+  border-right: 10px solid rgb(48,48,48);
+  background-image: linear-gradient(to right, rgba(24,24,24,1), rgba(24,24,24,0.5));
+}
+
+.trophyCardRight {
+  position: relative;
+  width: 320px;
+  height: 65px;
+  padding: 20px 25px;
+  border-left: 10px solid rgb(48,48,48);
+  background-image: linear-gradient(to left, rgba(24,24,24,1), rgba(24,24,24,0.5));
+}
+
+.trophyLogoBronze {
+  content: url(./trophyIcons/bronze-trophy.png);
+  position: relative;
+  height: 25px;
+  padding-right: 20px;
+  float: left;
+  display: inline-block;
+}
+
+.trophyLogoSilver {
+  content: url(./trophyIcons/silver-trophy.png);
+  position: relative;
+  height: 25px;
+  padding-right: 20px;
+  float: left;
+  display: inline-block;
+}
+
+.trophyLogoGold {
+  content: url(./trophyIcons/gold-trophy.png);
+  position: relative;
+  height: 25px;
+  padding-right: 20px;
+  float: left;
+  display: inline-block;
+}
+
+.trophyLogoPlatinum {
+  content: url(./trophyIcons/platinum-trophy.png);
+  position: relative;
+  height: 25px;
+  padding-right: 20px;
+  float: left;
+  display: inline-block;
+}
+
+.trophyLogoHidden {
+  content: url(./trophyIcons/hidden-trophy.png);
+  position: relative;
+  height: 25px;
+  padding-right: 20px;
+  float: left;
+  display: inline-block;
+}
+
+.BronzeLeft {
+  border-right: 10px solid rgb(80,50,20);
+  background-image: linear-gradient(to right, rgba(80,50,20,1), rgba(80,50,20,0.5));
+}
+
+.BronzeRight {
+  border-left: 10px solid rgb(80,50,20);
+  background-image: linear-gradient(to left, rgba(80,50,20,1), rgba(80,50,20,0.5));
+}
+
+.SilverLeft {
+  border-right: 10px solid rgb(75,75,75);
+  background-image: linear-gradient(to right, rgba(75,75,75,1), rgba(75,75,75,0.5));
+}
+
+.SilverRight {
+  border-left: 10px solid rgb(75,75,75);
+  background-image: linear-gradient(to left, rgba(75,75,75,1), rgba(75,75,75,0.5));
+}
+
+.GoldLeft {
+  border-right: 10px solid rgb(100,84,0);
+  background-image: linear-gradient(to right, rgba(100,84,0,1), rgba(100,84,0,0.5));
+}
+
+.GoldRight {
+  border-left: 10px solid rgb(100,84,0);
+  background-image: linear-gradient(to left, rgba(100,84,0,1), rgba(100,84,0,0.5));
+}
+
+.PlatinumLeft {
+  border-right: 10px solid rgb(90,90,89);
+  background-image: linear-gradient(to right, rgba(90,90,89,1), rgba(100,84,0,0.5));
+}
+
+.PlatinumRight {
+  border-left: 10px solid rgb(90,90,89);
+  background-image: linear-gradient(to left, rgba(90,90,89,1), rgba(100,84,0,0.5));
+}
+
+.trophyIMG {
+  position: relative;
+  top: -10px;
+  height: 40px;
+  float: right;
+  display: inline-block;
+}
+
+.trophyNameLocked {
+  position: relative;
+  top: -7px;
+  font-size: 25px;
+  color: #e0e0e0;
+  white-space: nowrap;
+  width: 275px;
+  text-shadow: 2px 2px #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophyNameUnlocked {
+  position: relative;
+  top: -7px;
+  font-size: 25px;
+  color: #e0e0e0;
+  white-space: nowrap;
+  width: 210px;
+  text-shadow: 2px 2px #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophyDescription {
+  position: relative;
+  top: -15px;
+  font-size: 23px;
+  color: #B8B8B8;
+  width: 360px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophyDescriptionHidden {
+  visibility: hidden;
+}
+
+.trophyDescriptionHidden:before {
+  visibility: visible;
+  position: relative;
+  content: "";
+}
+
+.trophyLogoUnlocked {
+  position: relative;
+  height: 25px;
+  padding-right: 25px;
+  float: left;
+  display: inline-block;
+}

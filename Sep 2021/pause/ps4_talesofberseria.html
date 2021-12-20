@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+<style>
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  background-image: url("../splash/ps4_talesofberseria.png");
+  filter: brightness(0.5) blur(5px);
+  z-index: -1;
+}
+</style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Tales of Berseria</title>
+  </head>
+  <body>
+    <div class="status">
+      <div class="columnback">
+        <div class="gameInfo">
+          <img class="gameLogo" src="https://i.psnprofiles.com/games/bb22fc/Sfd9065.png">
+          <div class="gameInfoNowPlayingContainer">
+            <p class="nowPlaying">Now Playing</p>
+            <p class="gameName">Tales of Berseria</p>
+          </div>
+          <div class="gameTrophyEarnedContainer">
+            <p class="nowPlaying">Earned</p>
+            <p class="trophyFraction"><span id="earTro"></span> / <span id="totTro"></span></p>
+          </div>
+        </div>
+
+        <div class="trophyColumn animate-right"><p id="trophiesPage1"></p></div>
+        <div class="trophyColumn animate-right"><p id="trophiesPage2"></p></div>
+        <div class="trophyColumn animate-right"><p id="trophiesPage3"></p></div>
+        <div class="trophyColumn animate-right"><p id="trophiesPage4"></p></div>
+        <div class="trophyColumn animate-right"><p id="trophiesPage5"></p></div>
+        <div class="trophyColumn animate-right"><p id="trophiesPage6"></p></div>
+      </div>
+    </div>
+
+<div class="background"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="../lists/ps4_talesofberseria.js"></script>
+
+<script type="text/javascript" src="./main.js"></script>
+
+  </body>
+</html>

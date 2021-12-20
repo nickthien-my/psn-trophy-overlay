@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twitch followers</title>
+
+	<style type="text/css">
+	/* ---------- RESET ----------*/
+	@charset "utf-8";
+	*{margin:0;padding:0}
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+	{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+	/* HTML5 display-role reset for older browsers */
+	article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+	{display:block}
+	body {line-height:normal}
+	ol,ul {list-style:none}
+	blockquote,q {quotes:none}
+	blockquote:before,blockquote:after,q:before,q:after
+	{content:'';content:none}
+	table {border-collapse:collapse;border-spacing:0}
+	.clear {clear:both}
+
+	/* ---------- STYLES ---------- */
+	body {
+		background: transparent;
+		opacity: 0.5;					/* You can remove this if you don't want opacity */
+	}
+
+	h2 {
+		display: inline-block;
+		font-family: 'Arial';
+		font-size: 16px;
+		color: #EDEB85;
+		background-color: black;
+		padding: 6px 10px;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.container .list {
+		float: left;                 /* Float labels to left or right side */
+	}
+
+	.container .list li {
+		display: block;
+
+		text-align: left;	         /* Text align */
+
+		margin: 0 0;				 /* Padding outside of labels */
+	}
+
+	.container .list li span {
+		display: inline-block;
+
+		padding: 6px 10px;			  /* Padding inside of labels */
+
+		font-family: 'Arial';		  /* Font */
+		font-size: 16px;			  /* Font size */
+		font-weight: bold;			  /* Font weight */
+		text-transform: uppercase;
+
+		color: black;				  /* Font color */
+		background-color: #EDEB85;	  /* Background color */
+	}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Last followers</h2>
+		<div class="clear"></div>
+		<ul class="list"></ul>
+		<div class="clear"></div>
+	</div>
+
+	<script type="text/javascript">
+	// -------------- SETTINGS ----------------
+
+	var CLIENT_ID = "client id from Connections in Twitch settings";
+	var CHANNEL_NAME = "channel_name";
+	var LIMIT = 5;
+
+	// ----------------------------------------
+
+	var currentFollowers = new Array(LIMIT);
+	var firstStart = false;
+
+	function addToList(name) {
+		var list = document.getElementsByClassName("list")[0];
+		var node      = document.createElement("li");
+		var nodeInner = document.createElement("span");
+		var nodeText  = document.createTextNode(name);
+		nodeInner.appendChild(nodeText);
+		node.appendChild(nodeInner);
+		list.appendChild(node);
+	}
+
+	function removeFromList() {
+		var list = document.getElementsByClassName("list")[0];
+		var labels = list.getElementsByTagName("li");
+		if(labels.length > 0)
+			list.removeChild(labels[labels.length - 1]);
+	}
+
+	function getFollowers(response) {
+		var json = JSON.parse(response);
+		for(var i = 0; i < json.follows.length; i++) {
+			var follower = json.follows[i];
+
+			if(currentFollowers[i] != follower.user._id) {
+				currentFollowers.shift();
+				currentFollowers.push(follower.user._id);
+				if(!firstStart)
+					removeFromList();
+				addToList(follower.user.display_name);
+			}
+		}
+	}
+
+	function sendRequest() {
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function()	{
+			if(request.readyState == 4 && request.status == 200) {
+				if(!firstStart)
+					firstStart = true;
+
+				getFollowers(request.responseText);
+			}
+		}
+
+		request.open("GET", "https://api.twitch.tv/kraken/channels/" + CHANNEL_NAME + "/follows?client_id=" + CLIENT_ID + "&limit=" + LIMIT, true);
+		request.send();
+	}
+
+	sendRequest();
+
+	var timer = setInterval(function() {
+		sendRequest();
+	}, 20000);
+	</script>
+</body>
+</html>

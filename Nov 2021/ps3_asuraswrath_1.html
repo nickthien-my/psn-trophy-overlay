@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <title>Asura's Wrath</title>
+  </head>
+  <body>
+<div class="row">
+
+  <div class="col-lg-5 px-5">
+    <p class="nowPlaying">Now Playing</p>
+    <p class="gameName">Asura's Wrath</p>
+  </div>
+
+  <div class="col-lg-2">
+    <img class="logo mx-auto d-block" src="https://i.psnprofiles.com/games/a2aa19/L8927e6.png">
+  </div>
+
+  <div class="col-lg-5 px-5 text-end">
+    <p class="nowPlaying">Earned</p>
+    <p class="gameName"><span id="troEarn"></span> of <span id="total"></span> Trophies</p>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="row">
+    <div class="col-lg-6 px-5">
+      <div id="targetTrophies"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="background"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+  var trophies = [
+      {
+        "troName": "Enlightenment",
+        "troDesc": "Acquire all ASURA's WRATH trophies.",
+        "troType": "platinum",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/1Le1ffaa.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Suffering",
+        "troDesc": "Complete Part I: Suffering.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/2L891ff7.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Rebirth",
+        "troDesc": "Complete Part II: Rebirth.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/3L8a0110.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Karma",
+        "troDesc": "Complete Part III: Karma.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/4Lb63192.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "The Truth Hurts",
+        "troDesc": "Uncover the truth.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/5L901a51.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Fighter",
+        "troDesc": "Complete all episodes on Normal or higher.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/6L91a0e9.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Warrior",
+        "troDesc": "Complete all episodes on Hard.",
+        "troType": "gold",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/7L5af8bb.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Demigod",
+        "troDesc": "Complete all episodes with at least an A rank on Normal.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/8Ladaa64.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Shinkoku Soldier",
+        "troDesc": "Complete all episodes with an S rank on Normal.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/9Ld37faf.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Guardian General",
+        "troDesc": "Complete all episodes with at least an A rank on Hard.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/10Laab248.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Deity",
+        "troDesc": "Complete all episodes with an S rank on Hard.",
+        "troType": "gold",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/11Lb2655e.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Mortal",
+        "troDesc": "Achieve a D rank or higher on any episode.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/12Ldbaee3.png",
+        "troAttr": "Unlocked"
+      },
+      {
+        "troName": "Anger Management",
+        "troDesc": "Activate Brust for the first time in Episode 1.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/13L9b28cf.png",
+        "troAttr": "Unlocked"
+      },
+      {
+        "troName": "The Six-Armed Man",
+        "troDesc": "Grow a few extra limbs in Episode 5.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/14La743d0.png",
+        "troAttr": "Unlocked"
+      },
+      {
+        "troName": "Heads Will Roll",
+        "troDesc": "Complete loseit in Episode 12.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/15La7bdce.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Rebel with a Cause",
+        "troDesc": "Do what you think is right in Episode 13.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/16La55208.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Denied",
+        "troDesc": "Get scolded by your former master in Episode 10.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/17L60a3b3.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "It Takes Two",
+        "troDesc": "Defeat Deus with Yasha in Episode 17.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/18L0b8808.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "A Cry of Anger",
+        "troDesc": "Activate Burst 50 times.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/19L7436b8.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "A Roar of Fury",
+        "troDesc": "Activate Burst 100 times.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/20L16dee8.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Hit'Em Hard",
+        "troDesc": "Defeat 100 enemies with a special attack.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/21L4d2b08.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Hit'Em Harder",
+        "troDesc": "Defeat 300 enemies with a special attack.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/22L455a66.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Can't Touch This",
+        "troDesc": "Perform 50 counterattacks.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/23L576a37.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Can't Touch That",
+        "troDesc": "Perform 100 counterattacks.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/24L5b2139.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "They Don't Stand a Chance",
+        "troDesc": "Defeat 50 enemies while in Unlimited Mode.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/25L25c627.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Unstoppable Force",
+        "troDesc": "Defeat 100 enemies while in Unlimited Mode.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/26Lb442bb.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "A Cry of Anger",
+        "troDesc": "Activate Burst 50 times.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/19L7436b8.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "A Roar of Fury",
+        "troDesc": "Activate Burst 100 times.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/20L16dee8.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Hit'Em Hard",
+        "troDesc": "Defeat 100 enemies with a special attack.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/21L4d2b08.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Hit'Em Harder",
+        "troDesc": "Defeat 300 enemies with a special attack.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/22L455a66.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Can't Touch This",
+        "troDesc": "Perform 50 counterattacks.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/23L576a37.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Can't Touch That",
+        "troDesc": "Perform 100 counterattacks.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/24L5b2139.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "They Don't Stand a Chance",
+        "troDesc": "Defeat 50 enemies while in Unlimited Mode.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/25L25c627.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Unstoppable Force",
+        "troDesc": "Defeat 100 enemies while in Unlimited Mode.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/26Lb442bb.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Taking Out the Trash",
+        "troDesc": "Defeat 300 enemies with heavy attacks and/or lock-on  fire.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/27Lb4318d.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Quick on the Draw",
+        "troDesc": "Achieve 70 EXCELLENT synchronic impact rankings.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/28L9dcd69.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Lightning Reflexes",
+        "troDesc": "Achieve 150 EXCELLENT synchronic impact rankings.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/29Lbdd210.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Be the Fist",
+        "troDesc": "Achieve an overall synchronic rate average of 80% on any difficulty.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/30L021df8.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Pain Is Universal",
+        "troDesc": "Accumulate a total of 10000 in damage.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/31L226679.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Too Legit to Quit",
+        "troDesc": "Continue the game after falling in battle.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/32L54454f.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Look Ma, No Eyes!",
+        "troDesc": "Complete the game with the Blind Master guage equipped.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/33Laffb86.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Who Needs Health?",
+        "troDesc": "Complete the game with the Mortal guage equipped.",
+        "troType": "gold",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/34L61070b.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "CG Collector",
+        "troDesc": "Get all the CG art.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/35L0f2511.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Art Appreciator",
+        "troDesc": "Get all the illustrations.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/36L12cfd4.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Movie Buff",
+        "troDesc": "Get all the movies and interludes.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/37L7a9829.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "The Whole Nine",
+        "troDesc": "Get all the gauges.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/38L6057d4.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Ka-ching!",
+        "troDesc": "Accumulate a total of 120000 Battle points.",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/39L8bd8f1.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "View of the Valley",
+        "troDesc": "Continue to stare at the hot spring attendant's assets.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/40L11cb2f.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Like a Fish",
+        "troDesc": "Consume more alcohol than you should.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/41Ldcffa7.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Sometimes I Feel Like...",
+        "troDesc": "Finding all the peeping Doji at the hot spring.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/42L217aee.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Shut Up, Wyzen!",
+        "troDesc": "Interrupt Wyzen's monologue.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/43L47739a.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Shut Up, Kalrow!",
+        "troDesc": "Interrupt Kalrow's monologue.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/44L093537.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Shut Up, Augus!",
+        "troDesc": "Interrupt Augus' monologue.",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/a2aa19/trophies/45L17ed6d.png",
+        "troAttr": "Locked"
+      }
+    ];
+
+  </script>
+
+  <script type = "text/javascript" src = "./main.js"></script>
+
+
+  </body>
+</html>

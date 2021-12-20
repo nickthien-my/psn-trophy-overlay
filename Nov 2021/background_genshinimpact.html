@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+<style>
+  .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 1080px;
+    background-image: url("./splash/ps4_genshinimpact_1.png");
+    filter: brightness(0.5) blur(5px);
+    z-index: -1;
+  }
+</style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Genshin Impact</title>
+  </head>
+  <body>
+
+<div class="background"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+var trophies = [
+  {
+    "troName": "Of Mountains High",
+    "troDesc": "Obtain the power of Geo.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/1La7b4b4.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Onward and Upward (I)",
+    "troDesc": "Ascend a character to Phase 2 for the first time.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/2L3aebfb.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Onward and Upward (II)",
+    "troDesc": "Ascend a character to Phase 4 for the first time.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/3Lc4374e.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Onward and Upward (III)",
+    "troDesc": "Ascend a character to Phase 6 for the first time.",
+    "troType": "silver",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/4L1800a2.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Re-Armed, Re-Forged (I)",
+    "troDesc": "Ascend a weapon to Phase 2.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/5L83505c.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Re-Armed, Re-Forged (II)",
+    "troDesc": "Ascend a weapon to Phase 4.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/6Ldb28fa.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Re-Armed, Re-Forged (III)",
+    "troDesc": "Ascend a weapon to Phase 6.",
+    "troType": "silver",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/7L6d7059.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Wind-chasing Treasure Hunter",
+    "troDesc": "Open 100 chests in Mondstadt (excluding the Dragonspine area).",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/8Lbdbb05.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Wind-Chasing Treasure Hunter (II)",
+    "troDesc": "Open 200 chests in Mondstadt (excluding the Dragonspine area).",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/9Lb4f749.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Wind-Chasing Treasure Hunter (III)",
+    "troDesc": "Open 400 chests in Mondstadt (excluding the Dragonspine area).",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/10L1c6cb3.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Rock-Steady Treasure Hunter (I)",
+    "troDesc": "Open 200 chests in Liyue.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/11Lba3143.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Rock-Steady Treasure Hunter (II)",
+    "troDesc": "Open 400 chests in Liyue.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/12L866c88.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Rock-Steady Treasure Hunter (III)",
+    "troDesc": "Open 800 chests in Liyue.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/13Lae67c0.png",
+    "troAttr": "Locked"
+  },
+  {
+    "troName": "Unswerving",
+    "troDesc": "Open the chest in the middle of the heart-shaped rock formation.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/14L711f14.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Beloved of the Anemo Archon",
+    "troDesc": "Take a seat in the hands of the God Statue in Mondstadt.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/15Lfe603a.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "Nothing Special, Just Practice",
+    "troDesc": "Hit an eagle mid-flight with your bow.",
+    "troType": "bronze",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/16Ledaaa4.png",
+    "troAttr": "Unlocked"
+  },
+  {
+    "troName": "The End of the Beginning",
+    "troDesc": "Complete the Mondstadt Archon Quests.",
+    "troType": "silver",
+    "troIMG": "https://i.psnprofiles.com/games/300d20/trophies/17Lb4b64d.png",
+    "troAttr": "Unlocked"
+  }
+];
+
+</script>
+
+<script type = "text/javascript" src = "./main.js"></script>
+
+  </body>
+</html>

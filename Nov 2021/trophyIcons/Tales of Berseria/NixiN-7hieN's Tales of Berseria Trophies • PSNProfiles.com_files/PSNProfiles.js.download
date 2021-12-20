@@ -1,0 +1,640 @@
+jQuery(document).ready(function($)
+{
+	$('a[rel*=modal]').facebox();
+
+	$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+	});
+}) 
+
+var searchLast;
+
+function search(type, q, inline)
+{
+	if (!q.length)
+	{
+		$('#content #search-results').html('<div class="no-results"><h1>Search games, guides and trophies</h1></div>');
+		$('#content #result-count').html('');
+		return;
+	} else if ((type == 'games'  || type == 'guides') && q.length < 2) {
+		return;
+	} else if (type == 'trophies' && q.length < 4) {
+		return;
+	} else if (type == 'users' && q.length < 6) {
+		return;
+	}
+
+	if (q != searchLast) {
+		history.pushState(null, null, '/search/'+type+'?q='+encodeURIComponent(q));
+		searchLast = q;
+	} else {
+		return
+	}
+
+	var opts = {url: 'search/'+type,
+				data: {q: encodeURIComponent(q)},
+				holder: '#content #search-results',
+				success:function(data)
+				{
+					$('#content #search-results').html(data.html).show();
+					$('#breadCrumbs').html(data.breadCrumbs);
+					$('#result-count').html(data.results);
+				}
+			}
+
+	XHR(opts);
+}
+
+
+function inlineSearch(q, type)
+{
+	if (!q.length)
+	{
+		$('#inline-results').html('').hide();
+		return;
+	} else if (q.length < 6) {
+		//return;
+	}
+
+	if (q == searchLast) {
+		return
+	}
+	searchLast = q;
+
+	if (typeof searchDelay === "number") {
+		window.clearTimeout(searchDelay);
+	}
+
+	var opts = {url: 'search/'+type,
+				data: {q: encodeURIComponent(q), inline: 1},
+				success:function(data)
+				{
+					$('#inline-results').html(data.html).show();
+				}
+			}
+
+	XHR(opts);
+}
+
+
+function prepareSpoilers()
+{
+	$('.guide .spoiler').each(function()
+	{
+		$(this).addClass('prepared');
+		$(this).html('<span>'+$(this).text()+'</span><div></div>').click(function()
+		{
+			$(this).toggleClass('reveal');
+		});
+	});
+}
+
+function blurHeader(smallHeader)
+{
+	$('#slider div:not(:first-child) div.blur').each(function(i)
+	{
+		var canvas = $('<canvas width="1920" height="520"></canvas>').get(0);
+
+		var that 	= this;
+    	var img 	= new Image();
+    	img.crossOrigin = "Anonymous";
+		img.src 	= $(that).parent().parent().css("background-image").replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, '');
+		img.onload 	= function()
+		{
+			drawImageProp(canvas.getContext("2d"), img, 0, 0, 1920, 520);
+
+			if (smallHeader == true)
+			{
+				stackBlurCanvasRGB(canvas, 0, 22, 1920, 320, 30);
+			}
+			else
+			{
+				//stackBlurCanvasRGB(canvas, 0, 0, 1920, 85, 20);
+				stackBlurCanvasRGB(canvas, 0, 0, 1920, 150, 20);
+			}
+			$(that).css("background-image", "url('"+canvas.toDataURL("image/jpeg")+"')");
+		};
+	});
+}
+
+
+function slideSwitch(id, type, time)
+{
+	var $active = $(id+' .active');
+
+	if ( $active.length == 0 ) $active = $(id+' :last');
+
+	var $next =  $active.next().length ? $active.next() : $(id+' :first');
+
+	$active.get(0).classList.add('last-active');
+
+	$next.get(0).classList.add('active');
+
+	setTimeout(function(){ $active.get(0).classList.remove('active'); $active.get(0).classList.remove('last-active'); }, 500);
+}
+
+
+function updatePsnUser(psnId, reCaptcha)
+{
+	if (!psnId)
+	{
+		return;
+	}
+
+	$('#update-find').hide();
+	$('#processing').show();
+
+	XHR({
+		url: 'update',
+		data: {psnId: psnId, 'g-recaptcha-response': reCaptcha},
+		method: 'POST',
+		success:function(data)
+		{
+			$('#update').html(data);
+		}
+   });
+}
+
+
+function psnUpdateStatus(user)
+{
+	XHR({
+		url: 'update/status',
+		data: {user: user},
+		success:function(data)
+		{
+	   		if ($('#update').text().trim() != data.status) {
+		   		$('#update').html(data.html);
+		   	}
+		}
+   });
+}
+
+
+function modal(name, args, method, append)
+{
+	if (!name)
+	{
+		return false;
+	}
+
+	if ($.facebox.isOpen)
+	{
+		$('#facebox').LoadingOverlay('show', {
+		    fade: [250,250],
+		});
+	}
+	else
+	{
+		$.facebox({ div: '#modal' });
+	}
+
+	modalXHR(name, args, method, function(data, forceAppend)
+	{
+		$('#facebox').LoadingOverlay('hide');
+		$.facebox.addPage(data, (append || forceAppend ? true : false));
+	});
+}
+
+function modalXHR(name, args, method, cb)
+{
+	if (method == 'POST' && args && args.files)
+	{
+		var fd = new FormData();
+
+		if (args.files)
+		{
+			for(var i = 0; i < args.files.length; i++)
+			{
+				fd.append(i, args.files[i]);
+			}
+		}
+
+		$.each(args, function(key, input)
+		{
+			if (typeof input != 'undefined' && input.name != 'files')
+			{
+				fd.append(key, input);
+			}
+		});
+	}
+
+	var options = {
+		type: method || 'GET',
+		url: "/xhr/"+name,
+		data: fd || args || null,
+		success: function(data)
+		{
+			if (data.success && data.redirect) {
+				document.location = data.redirect;
+			} else {
+				cb(data);
+			}
+		},
+		error: function(err)
+		{
+			cb('<div class="title-bar flex v-align"> \
+					<div class="grow"> \
+						<h3>Error</h3> \
+					</div> \
+				</div> \
+				<div class="inner"> \
+					<center>There was an error processing this request, please try again.<br /><br />Error code: '+err.status+'<br />'+err.statusText+' \
+				</div> \
+				<div class="bottom"> \
+					<span class="floatr"> \
+						<a href="#" class="button red" onclick="$(this).trigger(\'close.facebox\')">Close</a> \
+					</span> \
+					<br style="clear:both" /> \
+				</div>', true);
+		}
+	};
+
+	if (method == 'POST' && args && args.files)
+	{
+		options.contentType = false;
+		options.processData = false; 
+	}
+
+	$.ajax(options);
+}
+
+
+function XHR(opt, holder)
+{
+
+
+	if ($(opt.holder+' > div.xhr-error').length) {
+		$(opt.holder+' > div.xhr-error').slideUp(150, function() {
+			if (opt.holder) {
+				$(opt.holder).LoadingOverlay('show', {
+				    fade: [250,250],
+				});
+			}
+		});
+	} else {
+		if (opt.holder) {
+			$(opt.holder).LoadingOverlay('show', {
+			    fade: [250,250],
+			});
+		}
+	}
+
+	var options = {
+		type: opt.method || 'GET',
+		url: (opt.url.charAt(0) != '/' ? '/xhr/' : '') + opt.url,
+		data: opt.data || null,
+		success: function(data)
+		{
+			if (opt.holder)
+			{
+				$(opt.holder).LoadingOverlay('hide');
+			}
+
+			if (opt.holder && (data.success == false || data.error)) {
+				var m = data.message || data.error;
+				var error = '<div class="xhr-error" style="display:none"><h3>Error</h3>'+m+'</div>';
+
+				if ($(opt.holder+' > div.xhr-error').length)
+				{
+					$(opt.holder+' > div.xhr-error').replaceWith(error);
+
+					$(opt.holder+' > div.xhr-error').show();
+				}
+				else
+				{
+					$(opt.holder).prepend(error);
+					$(opt.holder+' > div.xhr-error').slideDown(250);
+				}
+			} else {
+				opt.success(data);
+			}
+		},
+		error: function(err)
+		{
+			// Self aborted
+			if (err.status == 0) {
+				return;
+			}
+
+			if (typeof opt.error == 'function')
+			{
+				opt.error(err);
+			}
+
+			if (opt.holder)
+			{
+				$(opt.holder).LoadingOverlay('hide');
+			}
+			
+			if (opt.holder)
+			{
+				var error = '<div class="xhr-error" style="display:none"><h3>Error</h3>An error occured, click to try again<span>Error code: '+err.status+' <bullet>•</bullet> '+err.statusText+'</span></div>';
+
+				if ($(opt.holder+' > div.xhr-error').length)
+				{
+					$(opt.holder+' > div.xhr-error').replaceWith(error);
+
+					$(opt.holder+' > div.xhr-error').show();
+				}
+				else
+				{
+					$(opt.holder).prepend(error);
+					$(opt.holder+' > div.xhr-error').slideDown(250);
+				}
+
+				if (opt.holder) {
+					$(opt.holder).LoadingOverlay('hide');
+				}
+
+				$(opt.holder+' > div.xhr-error').click(function()
+				{
+					$(this).slideUp(125, function()
+					{
+						if ($('#'+opt.loader).length)
+						{
+							$('#'+opt.loader).fadeIn(125);
+						}
+						$(this).remove();
+						XHR(opt, opt.holder);
+					});
+				});
+			}
+		}
+	};
+
+	return $.ajax(options);
+}
+
+
+
+function postAndRedirect(url, postData)
+{
+    var postFormStr = "<form method='POST' action='" + url + "'>\n";
+
+    for (var key in postData)
+    {
+        if (postData.hasOwnProperty(key))
+        {
+            postFormStr += "<input type='hidden' name='" + key + "' value='" + postData[key] + "'></input>";
+        }
+    }
+
+    postFormStr += "</form>";
+
+    var formElement = $(postFormStr);
+
+    $('body').append(formElement);
+    $(formElement).submit();
+}
+
+/*
+function settingsModal()
+{
+	jQuery.facebox({ div: '#modal' });
+
+	$.ajax({
+		type: "GET",
+		dataType: "html",
+		url: "/php/modalSettings.php",
+		success: function(data){
+			$('#facebox .popup .content').html(data);
+			
+			//jQuery.facebox(data);
+		}
+	});
+}*/
+
+function stickersModal()
+{
+	jQuery.facebox({ div: '#modal' });
+	$.ajax({
+		type: "GET",
+		dataType: "html",
+		url: "/php/modalStickers.php",
+		success: function(data){
+			$('#facebox .popup .content').html(data);
+		}
+	});
+}
+
+function miscModal(section)
+{
+	jQuery.facebox({ div: '#modal' });
+	$.ajax({
+		type: "GET",
+		dataType: "html",
+		url: "/php/modalMisc.php?section="+section,
+		success: function(data){
+			$('#facebox .popup .content').html(data);
+		}
+	});
+}
+
+function paypalPDTModal(tx)
+{
+	jQuery.facebox({ div: '#modal' });
+	$.ajax({
+		type: "GET",
+		dataType: "html",
+		data: "tx="+tx,
+		url: "/php/modalPaypal.php",
+		success: function(data){
+			$('#facebox .popup .content').html(data);
+		}
+	});
+}
+
+
+
+function logout()
+{
+	if (confirm("Are you sure you wish to logout?"))
+	{
+		$('#logoutForm').submit();
+	}
+}
+
+
+function tryAgain()
+{
+	if (typeof showCaptcha != 'undefined')
+	{
+		$('#reCaptcha').html('');
+        grecaptcha.render('reCaptcha', {
+          	'sitekey': '6LcgogUTAAAAANZiIWcw8jdwy0-8MUcb_0a8qcvH',
+	        'theme': 'dark',
+	        'callback': function(response){ reCaptchaResponse = response; }
+        });
+	}
+
+	$('#reCaptcha').show()
+	$('#processing').hide();
+	$('#processing').html('<span id="update"><span id="update"><div id="" class="fancy-loader white large" style=""></div><br>Validating</span></span>');
+	$('#update-find').show();
+}
+
+
+function profile_sort(sort) {
+	var cookie_date = new Date(2020, 01, 01);
+	document.cookie = "profile_sort="+sort+"; expires="+cookie_date.toGMTString()+"; path=/";
+}
+
+function secret_trophies(opt) {
+	var cookie_date = new Date(2020, 01, 01);
+	document.cookie = "secret_trophies="+opt+"; expires="+cookie_date.toGMTString()+"; path=/";
+}
+
+
+function twitterShare(url, text) {
+	var sharer = window.open('https://twitter.com/intent/tweet?url='+url+'&text='+text+'&via=PSNProfiles', 'sharer', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+  
+  	if (sharer.focus) { sharer.focus(); }
+    return false;
+}
+
+function fbShare(url) {
+	var sharer = window.open('https://www.facebook.com/sharer/sharer.php?u='+url, 'sharer', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+  
+  	if (sharer.focus) { sharer.focus(); }
+    return false;
+}
+
+
+
+
+
+
+/**
+* Bootstrap.js by @fat & @mdo
+* plugins: bootstrap-dropdown.js, bootstrap-scrollspy.js, bootstrap-affix.js
+* Copyright 2012 Twitter, Inc.
+* http://www.apache.org/licenses/LICENSE-2.0.txt
+*/
+!function(a){function d(){a(".dropdown-backdrop").remove(),a(b).each(function(){e(a(this)).removeClass("open")})}function e(b){var c=b.attr("data-target"),d;c||(c=b.attr("href"),c=c&&/#/.test(c)&&c.replace(/.*(?=#[^\s]*$)/,"")),d=c&&a(c);if(!d||!d.length)d=b.parent();return d}var b="[data-toggle=dropdown]",c=function(b){var c=a(b).on("click.dropdown.data-api",this.toggle);a("html").on("click.dropdown.data-api",function(){c.parent().removeClass("open")})};c.prototype={constructor:c,toggle:function(b){var c=a(this),f,g;if(c.is(".disabled, :disabled"))return;return f=e(c),g=f.hasClass("open"),d(),g||("ontouchstart"in document.documentElement&&a('<div class="dropdown-backdrop"/>').insertBefore(a(this)).on("click",d),f.toggleClass("open")),c.focus(),!1},keydown:function(c){var d,f,g,h,i,j;if(!/(38|40|27)/.test(c.keyCode))return;d=a(this),c.preventDefault(),c.stopPropagation();if(d.is(".disabled, :disabled"))return;h=e(d),i=h.hasClass("open");if(!i||i&&c.keyCode==27)return c.which==27&&h.find(b).focus(),d.click();f=a("[role=menu] li:not(.divider):visible a",h);if(!f.length)return;j=f.index(f.filter(":focus")),c.keyCode==38&&j>0&&j--,c.keyCode==40&&j<f.length-1&&j++,~j||(j=0),f.eq(j).focus()}};var f=a.fn.dropdown;a.fn.dropdown=function(b){return this.each(function(){var d=a(this),e=d.data("dropdown");e||d.data("dropdown",e=new c(this)),typeof b=="string"&&e[b].call(d)})},a.fn.dropdown.Constructor=c,a.fn.dropdown.noConflict=function(){return a.fn.dropdown=f,this},a(document).on("click.dropdown.data-api",d).on("click.dropdown.data-api",".dropdown form",function(a){a.stopPropagation()}).on("click.dropdown.data-api",b,c.prototype.toggle).on("keydown.dropdown.data-api",b+", [role=menu]",c.prototype.keydown)}(window.jQuery),!function(a){function b(b,c){var d=a.proxy(this.process,this),e=a(b).is("body")?a(window):a(b),f;this.options=a.extend({},a.fn.scrollspy.defaults,c),this.$scrollElement=e.on("scroll.scroll-spy.data-api",d),this.selector=(this.options.target||(f=a(b).attr("href"))&&f.replace(/.*(?=#[^\s]+$)/,"")||"")+" .nav li > a",this.$body=a("body"),this.refresh(),this.process()}b.prototype={constructor:b,refresh:function(){var b=this,c;this.offsets=a([]),this.targets=a([]),c=this.$body.find(this.selector).map(function(){var c=a(this),d=c.data("target")||c.attr("href"),e=/^#\w/.test(d)&&a(d);return e&&e.length&&[[e.position().top+(!a.isWindow(b.$scrollElement.get(0))&&b.$scrollElement.scrollTop()),d]]||null}).sort(function(a,b){return a[0]-b[0]}).each(function(){b.offsets.push(this[0]),b.targets.push(this[1])})},process:function(){var a=this.$scrollElement.scrollTop()+this.options.offset,b=this.$scrollElement[0].scrollHeight||this.$body[0].scrollHeight,c=b-this.$scrollElement.height(),d=this.offsets,e=this.targets,f=this.activeTarget,g;if(a>=c)return f!=(g=e.last()[0])&&this.activate(g);for(g=d.length;g--;)f!=e[g]&&a>=d[g]&&(!d[g+1]||a<=d[g+1])&&this.activate(e[g])},activate:function(b){var c,d;this.activeTarget=b,a(this.selector).parent(".active").removeClass("active"),d=this.selector+'[data-target="'+b+'"],'+this.selector+'[href="'+b+'"]',c=a(d).parent("li").addClass("active"),c.parent(".dropdown-menu").length&&(c=c.closest("li.dropdown").addClass("active")),c.trigger("activate")}};var c=a.fn.scrollspy;a.fn.scrollspy=function(c){return this.each(function(){var d=a(this),e=d.data("scrollspy"),f=typeof c=="object"&&c;e||d.data("scrollspy",e=new b(this,f)),typeof c=="string"&&e[c]()})},a.fn.scrollspy.Constructor=b,a.fn.scrollspy.defaults={offset:10},a.fn.scrollspy.noConflict=function(){return a.fn.scrollspy=c,this},a(window).on("load",function(){a('[data-spy="scroll"]').each(function(){var b=a(this);b.scrollspy(b.data())})})}(window.jQuery),!function(a){var b=function(b,c){this.options=a.extend({},a.fn.affix.defaults,c),this.$window=a(window).on("scroll.affix.data-api",a.proxy(this.checkPosition,this)).on("click.affix.data-api",a.proxy(function(){setTimeout(a.proxy(this.checkPosition,this),1)},this)),this.$element=a(b),this.checkPosition()};b.prototype.checkPosition=function(){if(!this.$element.is(":visible"))return;var b=a(document).height(),c=this.$window.scrollTop(),d=this.$element.offset(),e=this.options.offset,f=e.bottom,g=e.top,h="affix affix-top affix-bottom",i;typeof e!="object"&&(f=g=e),typeof g=="function"&&(g=e.top()),typeof f=="function"&&(f=e.bottom()),i=this.unpin!=null&&c+this.unpin<=d.top?!1:f!=null&&d.top+this.$element.height()>=b-f?"bottom":g!=null&&c<=g?"top":!1;if(this.affixed===i)return;this.affixed=i,this.unpin=i=="bottom"?d.top-c:null,this.$element.removeClass(h).addClass("affix"+(i?"-"+i:""))};var c=a.fn.affix;a.fn.affix=function(c){return this.each(function(){var d=a(this),e=d.data("affix"),f=typeof c=="object"&&c;e||d.data("affix",e=new b(this,f)),typeof c=="string"&&e[c]()})},a.fn.affix.Constructor=b,a.fn.affix.defaults={offset:0},a.fn.affix.noConflict=function(){return a.fn.affix=c,this},a(window).on("load",function(){a('[data-spy="affix"]').each(function(){var b=a(this),c=b.data();c.offset=c.offset||{},c.offsetBottom&&(c.offset.bottom=c.offsetBottom),c.offsetTop&&(c.offset.top=c.offsetTop),b.affix(c)})})}(window.jQuery)
+
+function setCookie(name, value, days) {
+    var expires;
+
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = escape(name) + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return unescape(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    setCookie(name, "", -1);
+}
+
+
+
+function setCaretPosition(elemId, caretPos) {
+    var el = document.getElementById(elemId);
+
+    el.value = el.value;
+
+    if (el !== null) {
+
+        if (el.createTextRange) {
+            var range = el.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+            return true;
+        }
+
+        else {
+            if (el.selectionStart || el.selectionStart === 0) {
+                el.focus();
+                el.setSelectionRange(caretPos, caretPos);
+                return true;
+            }
+
+            else  {
+                el.focus();
+                return false;
+            }
+        }
+    }
+}
+
+function htmlEncode(value){
+  //create a in-memory div, set it's inner text(which jQuery automatically encodes)
+  //then grab the encoded contents back out.  The div never exists on the page.
+  return $('<div/>').text(value).html();
+}
+
+function htmlDecode(value){
+  return $('<div/>').html(value).text();
+}
+
+/**
+ * By Ken Fyrstenberg
+ *
+ * drawImageProp(context, image [, x, y, width, height [,offsetX, offsetY]])
+ *
+ * If image and context are only arguments rectangle will equal canvas
+*/
+function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
+
+    if (arguments.length === 2) {
+        x = y = 0;
+        w = ctx.canvas.width;
+        h = ctx.canvas.height;
+    }
+
+    // default offset is center
+    offsetX = typeof offsetX === "number" ? offsetX : 0.5;
+    offsetY = typeof offsetY === "number" ? offsetY : 0.5;
+
+    // keep bounds [0.0, 1.0]
+    if (offsetX < 0) offsetX = 0;
+    if (offsetY < 0) offsetY = 0;
+    if (offsetX > 1) offsetX = 1;
+    if (offsetY > 1) offsetY = 1;
+
+    var iw = img.width,
+        ih = img.height,
+        r = Math.min(w / iw, h / ih),
+        nw = iw * r,   // new prop. width
+        nh = ih * r,   // new prop. height
+        cx, cy, cw, ch, ar = 1;
+
+    // decide which gap to fill    
+    if (nw < w) ar = w / nw;
+    if (nh < h) ar = h / nh;
+    nw *= ar;
+    nh *= ar;
+
+    // calc source rectangle
+    cw = iw / (nw / w);
+    ch = ih / (nh / h);
+
+    cx = (iw - cw) * offsetX;
+    cy = (ih - ch) * offsetY;
+
+    // make sure source rectangle is valid
+    if (cx < 0) cx = 0;
+    if (cy < 0) cy = 0;
+    if (cw > iw) cw = iw;
+    if (ch > ih) ch = ih;
+
+    // fill image in dest. rectangle
+    ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Marvel's Spider-Man - New Game+</title>
+  </head>
+  <body>
+<div class="row">
+
+  <div class="col-lg-5 px-5">
+    <p class="nowPlaying">Now Playing</p>
+    <p class="gameName">Marvel's Spider-Man - New Game+</p>
+  </div>
+
+  <div class="col-lg-2">
+    <img class="logo mx-auto d-block" src="https://i.psnprofiles.com/games/8c6109/L675c48.png">
+  </div>
+
+  <div class="col-lg-5 px-5 text-end">
+    <p class="nowPlaying">Earned</p>
+    <p class="gameName"><span id="troEarn"></span> of <span id="total"></span> Trophies</p>
+  </div>
+</div>
+
+
+<div class="bottom">
+  <div class="row">
+    <div class="col-lg-6 px-5">
+      <div id="info"></div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+  var trophies = [
+      {
+        "troName": "One More Time",
+        "troDesc": "Completed a New Game+ playthrough",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/52Lc56a58.png",
+        "addAttr": ""
+      },
+      {
+        "troName": "Power and Responsibility",
+        "troDesc": "Complete a playthrough on Ultimate difficulty",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/53L24e236.png",
+        "addAttr": ""
+      }
+    ];
+
+    var earned = [
+
+    ];
+
+    var x = "";
+    if (trophies.length == 0) {
+      x += "<div class='allTrophies'>";
+      x += "<p>All Trophies Unlocked!</p>";
+      x += "</div>";
+
+      document.getElementById("info").innerHTML = x;
+    } else {
+    for (var i = 0; i < trophies.length; i++) {
+
+        x += "<div class='trophyCard animate-left'>";
+        x += "<img src='" + trophies[i].troIMG + "' class='trophyLogo'>";
+        x += "<div class='" + trophies[i].addAttr + "'>";
+        x += "<p class='trophyName " + trophies[i].troType + "'>" + trophies[i].troName + "</p>";
+        x += "<p class='trophyDescription'>" + trophies[i].troDesc + "</p></div>";
+        x += "</div>"
+
+        document.getElementById("info").innerHTML = x;
+      }
+    }
+
+    var eT = "";
+    eT += 0 + earned.length;
+    document.getElementById("troEarn").innerHTML = eT;
+
+    var tT = "";
+    tT += trophies.length + earned.length;
+    document.getElementById("total").innerHTML = tT;
+
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+      var j;
+      var y = document.getElementsByClassName("trophyCard");
+      for (j = 0; j < y.length; j++) {
+        y[j].style.display = "none";
+      }
+      myIndex++;
+      if (myIndex > y.length) {myIndex = 1}
+      y[myIndex-1].style.display = "block";
+      setTimeout(carousel, 10000); // Change image every 2 seconds
+      }
+  </script>
+
+    </body>
+  </html>

@@ -1,0 +1,369 @@
+
+<!-- saved from url=(0012)about:srcdoc -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <script src="https://cdn.streamelements.com/scripts/jquery_3.3.1.min.js"></script>
+      <script>
+function bindEvent(element, eventName, eventHandler) {
+        if (element.addEventListener) {
+            element.addEventListener(eventName, eventHandler, false);
+        } else if (element.attachEvent) {
+            element.attachEvent('on' + eventName, eventHandler);
+        }
+    }
+
+bindEvent(window, 'message', function (event) {
+  const data = event.data;
+  if (data.listener && SE_API.responses[data.listener]) {
+    if (data.error) {
+      SE_API.responses[data.listener].reject(data.error);
+    } else {
+      SE_API.responses[data.listener].resolve(data.result);
+    }
+    return;
+  }
+
+  if (data.listener && data.listener.indexOf('resp_') === 0) {
+    return;
+  }
+
+  const session = data.session;
+  delete data.session;
+
+  const e = new CustomEvent('onEventReceived', {
+      detail: data
+  });
+  window.dispatchEvent(e);
+
+  if (session) {
+    const sessionEvent = new CustomEvent('onSessionUpdate', {
+      detail: {
+        session: session
+      }
+    });
+    window.dispatchEvent(sessionEvent)
+  }
+});
+
+window.addEventListener('load', function(event){
+    const initData = `{"session":{"data":{"follower-latest":{"name":"vvmanolia"},"follower-week":{"count":16},"follower-month":{"count":16},"follower-goal":{"amount":120},"follower-total":{"count":96},"subscriber-latest":{"name":"","amount":0,"tier":"","message":""},"subscriber-new-latest":{"name":"","amount":0,"message":""},"subscriber-resub-latest":{"name":"","amount":0,"message":""},"subscriber-gifted-latest":{"name":"","amount":0,"message":"","tier":"","sender":""},"subscriber-week":{"count":0},"subscriber-month":{"count":0},"subscriber-goal":{"amount":0},"subscriber-total":{"count":0},"subscriber-points":{"amount":0},"subscriber-alltime-gifter":{"name":"","amount":0},"host-latest":{"name":"tohka_aryani","amount":2},"raid-latest":{"name":"kaiuswitch","amount":5},"cheer-week":{"amount":0},"cheer-month":{"amount":0},"cheer-total":{"amount":0},"cheer-count":{"count":0},"cheer-goal":{"amount":0},"cheer-latest":{"name":"","amount":0},"tip-latest":{"name":"","amount":0},"tip-week":{"amount":0},"tip-month":{"amount":0},"tip-total":{"amount":0},"tip-goal":{"amount":0},"merch-goal-orders":{"amount":0},"merch-goal-items":{"amount":0},"merch-goal-total":{"amount":0},"follower-recent":[{"name":"vvmanolia","createdAt":"2021-07-31T21:24:54.819Z","type":"follower"},{"name":"winsteno","createdAt":"2021-07-31T12:30:13.903Z","type":"follower"},{"name":"maujior","createdAt":"2021-07-30T16:19:47.066Z","type":"follower"},{"name":"laxn","createdAt":"2021-07-28T15:07:16.486Z","type":"follower"},{"name":"juliaemma","createdAt":"2021-07-28T14:42:43.146Z","type":"follower"},{"name":"0x45e_tta","createdAt":"2021-07-28T07:23:22.706Z","type":"follower"},{"name":"0x25e","createdAt":"2021-07-27T20:49:01.069Z","type":"follower"},{"name":"roguegamers99","createdAt":"2021-07-23T12:44:04.634Z","type":"follower"},{"name":"adrian_a27","createdAt":"2021-07-20T17:24:47.656Z","type":"follower"},{"name":"nato_uwu12345","createdAt":"2021-07-20T05:46:26.264Z","type":"follower"},{"name":"pass1ve_vlrt","createdAt":"2021-07-17T08:59:16.444Z","type":"follower"},{"name":"cytrus_plays","createdAt":"2021-07-17T08:04:59.446Z","type":"follower"},{"name":"echoafeef","createdAt":"2021-07-17T04:43:57.417Z","type":"follower"},{"name":"melonyzer","createdAt":"2021-07-17T04:32:06.574Z","type":"follower"},{"name":"pizzac","createdAt":"2021-07-16T17:18:13.563Z","type":"follower"},{"name":"pragamingttv","createdAt":"2021-07-16T16:56:59.612Z","type":"follower"},{"name":"izzatzulkanain","createdAt":"2021-06-13T16:30:51.536Z","type":"follower"},{"name":"reia___","createdAt":"2021-06-07T08:40:06.603Z","type":"follower"},{"name":"kuoko_12","createdAt":"2021-06-06T03:23:03.772Z","type":"follower"},{"name":"wolfy0345","createdAt":"2021-06-02T16:53:57.559Z","type":"follower"},{"name":"mentalreap3r","createdAt":"2021-05-29T03:13:47.315Z","type":"follower"},{"name":"hizumi18","createdAt":"2021-05-29T02:49:48.240Z","type":"follower"},{"name":"sandythealien","createdAt":"2021-05-27T05:02:26.867Z","type":"follower"},{"name":"jadester","createdAt":"2021-05-19T15:13:05.770Z","type":"follower"},{"name":"anthonyytg","createdAt":"2021-05-19T14:02:16.276Z","type":"follower"}],"subscriber-recent":[],"host-recent":[{"name":"tohka_aryani","amount":2,"createdAt":"2021-06-02T16:05:05.153Z","type":"host"},{"name":"tohka_aryani","amount":3,"createdAt":"2021-04-12T15:47:42.291Z","type":"host"},{"name":"kaiuswitch","amount":4,"createdAt":"2020-05-17T15:49:19.822Z","type":"host"},{"name":"Zandra","amount":17,"type":"host"}],"raid-recent":[{"name":"kaiuswitch","amount":5,"createdAt":"2020-05-17T15:49:19.718Z","type":"raid"}],"cheer-recent":[{"name":"Veronike","amount":41,"type":"cheer"}],"tip-recent":[],"merch-recent":[],"cheer-alltime-top-donation":{"amount":0,"name":""},"cheer-alltime-top-donator":{"amount":0,"name":""},"tip-alltime-top-donation":{"amount":0,"name":""},"tip-alltime-top-donator":{"amount":0,"name":""},"cheer-monthly-top-donation":{"amount":0,"name":""},"cheer-monthly-top-donator":{"amount":0,"name":""},"tip-monthly-top-donation":{"amount":0,"name":""},"tip-monthly-top-donator":{"amount":0,"name":""},"cheer-session":{"amount":0},"cheer-session-top-donation":{"amount":0,"name":""},"cheer-session-top-donator":{"amount":0,"name":""},"cheer-weekly-top-donation":{"amount":0,"name":""},"cheer-weekly-top-donator":{"amount":0,"name":""},"follower-session":{"count":7},"subscriber-gifted-session":{"count":0},"subscriber-new-session":{"count":0},"subscriber-resub-session":{"count":0},"subscriber-session":{"count":0},"tip-count":{"count":0},"tip-session":{"amount":0},"tip-session-top-donation":{"amount":0,"name":""},"tip-session-top-donator":{"amount":0,"name":""},"tip-weekly-top-donation":{"amount":0,"name":""},"tip-weekly-top-donator":{"amount":0,"name":""}}},"recents":[{"name":"vvmanolia","createdAt":"2021-07-31T21:24:54.819Z","type":"follower"},{"name":"winsteno","createdAt":"2021-07-31T12:30:13.903Z","type":"follower"},{"name":"maujior","createdAt":"2021-07-30T16:19:47.066Z","type":"follower"},{"name":"laxn","createdAt":"2021-07-28T15:07:16.486Z","type":"follower"},{"name":"juliaemma","createdAt":"2021-07-28T14:42:43.146Z","type":"follower"},{"name":"0x45e_tta","createdAt":"2021-07-28T07:23:22.706Z","type":"follower"},{"name":"0x25e","createdAt":"2021-07-27T20:49:01.069Z","type":"follower"},{"name":"roguegamers99","createdAt":"2021-07-23T12:44:04.634Z","type":"follower"},{"name":"adrian_a27","createdAt":"2021-07-20T17:24:47.656Z","type":"follower"},{"name":"nato_uwu12345","createdAt":"2021-07-20T05:46:26.264Z","type":"follower"},{"name":"pass1ve_vlrt","createdAt":"2021-07-17T08:59:16.444Z","type":"follower"},{"name":"cytrus_plays","createdAt":"2021-07-17T08:04:59.446Z","type":"follower"},{"name":"echoafeef","createdAt":"2021-07-17T04:43:57.417Z","type":"follower"},{"name":"melonyzer","createdAt":"2021-07-17T04:32:06.574Z","type":"follower"},{"name":"pizzac","createdAt":"2021-07-16T17:18:13.563Z","type":"follower"},{"name":"pragamingttv","createdAt":"2021-07-16T16:56:59.612Z","type":"follower"},{"name":"izzatzulkanain","createdAt":"2021-06-13T16:30:51.536Z","type":"follower"},{"name":"reia___","createdAt":"2021-06-07T08:40:06.603Z","type":"follower"},{"name":"kuoko_12","createdAt":"2021-06-06T03:23:03.772Z","type":"follower"},{"name":"wolfy0345","createdAt":"2021-06-02T16:53:57.559Z","type":"follower"},{"name":"mentalreap3r","createdAt":"2021-05-29T03:13:47.315Z","type":"follower"},{"name":"hizumi18","createdAt":"2021-05-29T02:49:48.240Z","type":"follower"},{"name":"sandythealien","createdAt":"2021-05-27T05:02:26.867Z","type":"follower"},{"name":"jadester","createdAt":"2021-05-19T15:13:05.770Z","type":"follower"},{"name":"anthonyytg","createdAt":"2021-05-19T14:02:16.276Z","type":"follower"},{"name":"Veronike","amount":41,"type":"cheer"},{"name":"tohka_aryani","amount":2,"createdAt":"2021-06-02T16:05:05.153Z","type":"host"},{"name":"tohka_aryani","amount":3,"createdAt":"2021-04-12T15:47:42.291Z","type":"host"},{"name":"kaiuswitch","amount":4,"createdAt":"2020-05-17T15:49:19.822Z","type":"host"},{"name":"Zandra","amount":17,"type":"host"},{"name":"kaiuswitch","amount":5,"createdAt":"2020-05-17T15:49:19.718Z","type":"raid"}],"currency":{"code":"USD","name":"U.S. Dollar","symbol":"$"},"channel":{"username":"nixin86","apiToken":"pInEp6t5d4USBb4TE1CAIZNbRYSYmzoWRhVRG8LIL_bTQ-5B","id":"5e1b2b295da94f10ee773e14","providerId":"65293798"},"fieldData":{"fontFamily":"Bebas Neue","fontColor":"#FFFFFF","backgroundColor":"rgba(0, 0, 0, 0.5)","iconColor":"#000000","iconBackground":"#FFFFFF","wipeColor":"#FF0000"},"overlay":{"isEditorMode":false,"muted":false}}`
+
+    const e = new CustomEvent('onWidgetLoad', {
+        detail: JSON.parse(initData)
+    });
+
+    window.dispatchEvent(e);
+});
+
+const SE_API = {
+  responses: {},
+  sendMessage: (message, data = {}) => {
+    return new Promise((resolve, reject) => {
+      const response = 'resp_' + Math.random().toString(16).substr(2);
+      data.response = response;
+      data.request = message;
+      SE_API.responses[response] = { resolve, reject };
+      parent.postMessage(data, '*');
+    });
+  },
+  counters: {
+    get: key => {
+      return SE_API.sendMessage('counter_get', { key });
+    }
+  },
+  store: {
+    get: key => {
+      return SE_API.sendMessage('store_get', { key });;
+    },
+    set: (key, value) => {
+      return SE_API.sendMessage('store_set', { key, value });;
+    }
+  },
+  resumeQueue: () => {
+    return SE_API.sendMessage('resume_queue');
+  },
+  sanitize: (message) => {
+    return SE_API.sendMessage('sanitize', { message });
+  },
+  setField: (key, value, reload) => {
+    return SE_API.sendMessage('set_field', { key, value, reload });
+  }
+};
+
+
+
+var eval=function(){throw"eval is not allowed"};window.console.debug=function(){},window.console.info=function(){},window.console.warn=function(){},window.console.error=function(){},window.onclick=function(o){o.stopImmediatePropagation()},document.addEventListener("click",function(o){o.preventDefault(),o.stopPropagation(),o.stopImmediatePropagation()}),window.open=function(){};var $_console$$=console;Object.defineProperty(window,"console",{get:function(){if($_console$$._commandLineAPI)throw" ";return $_console$$},set:function(o){$_console$$=o}});
+</script>
+      <style>@keyframes slider {
+         0% {
+            width: 0%;
+            right: 0;
+            left: auto;
+         }
+
+         25% {
+            width: 100%;
+            right: 0;
+            left: auto;
+         }
+
+         41% {
+            width: 100%;
+            left: 0;
+            right: auto;
+         }
+
+         100% {
+            width: 0%;
+            left: 0;
+            right: auto
+         }
+      }
+
+      * {
+         box-sizing: border-box;
+      }
+
+      html,
+      body {
+         width: 380px;
+         height: 100px;
+      }
+
+      body {
+         margin: 0;
+         padding: 0;
+         width: 100%;
+         height: 100%;
+         position: relative;
+      }
+
+      iframe {
+         display: none;
+      }
+
+      .e-carousel {
+         position: relative;
+         width: 340px;
+         height: 60px;
+        background: rgba(0, 0, 0, 0.5);
+         /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); */
+      }
+
+      .item {
+         position: absolute;
+         left: 0;
+         top: 0;
+        border-top: 4px solid #FFFFFF;
+        height:60px;
+        display:flex!important;
+        flex-wrap:no-wrap;
+        
+      }
+
+      .item .icon {
+         position: relative;
+         height: 60px;
+         width: 60px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+        background:#FFFFFF;
+      }
+		.item .icon svg{
+          width:30px;
+          height:30px;
+        }
+        .item .icon svg .cls-1{
+        	fill:#000000;
+        }
+		.item .icon svg .cls-2{
+        	fill:#FFFFFF;
+        }
+
+      .item .text {
+        position: relative;
+        width: 280px;
+        height: 60px;
+        right: 0;
+        top: 0;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+        font-family: Bebas Neue;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 26px;
+        letter-spacing: 1px;
+      }
+
+      .item .text .span{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width:100%;
+      }
+
+      .icon img {
+         max-width: 50%;
+      }
+
+      .overlay {
+         position: absolute;
+         display: block;
+         position: absolute;
+         top: 0;
+         right: 0;
+         height: 100%;
+         width: 00%;
+         z-index: 100;
+        background: #FF0000;
+      }
+
+      .overlay.active {
+         animation: slider 1s ease-in-out forwards;
+      }</style>
+      </head>
+      <body style="width:{iframeSize.width};height:59.09px;">
+         <link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css?family=Bebas%20Neue:400,700" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous">
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+
+
+<div class="e-carousel slick-initialized slick-slider">
+  <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 1020px;"><div class="item slick-slide" id="follower" data-slick-index="0" aria-hidden="true" tabindex="-1" style="width: 340px; position: relative; left: 0px; top: 0px; z-index: 998; opacity: 0; transition: opacity 1500ms ease 0s;">
+    <div class="icon">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 114.42">
+        <defs>
+          <style>.cls-1,.cls-2{fill-rule:evenodd;}</style>
+        </defs>
+        <path class="cls-1" d="M9.32,0H113.56a9.35,9.35,0,0,1,9.32,9.32V82.94a9.37,9.37,0,0,1-9.32,9.32H83.84L67.68,111.32a8.17,8.17,0,0,1-12.82,0L39,92.26H9.32A9.36,9.36,0,0,1,0,82.94V9.32A9.34,9.34,0,0,1,9.32,0Z"></path>
+        <path class="cls-2" d="M46.47,49.89H76.41a11,11,0,0,1,11,11v4.29a1.35,1.35,0,0,1-1.35,1.34H36.83a1.35,1.35,0,0,1-1.35-1.34V60.88a11,11,0,0,1,11-11Zm15-32.33A14.22,14.22,0,1,1,47.22,31.78,14.22,14.22,0,0,1,61.44,17.56Z"></path>
+      </svg>
+    </div>
+    <div class="text">
+      <div class="span" id="followerText">vvmanolia</div>
+    </div>
+  </div><div class="item slick-slide slick-current slick-active" id="subscriber" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 340px; position: relative; left: -340px; top: 0px; z-index: 999; opacity: 1;">
+    <div class="icon">
+      <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+          <defs></defs>
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+              <g class="cls-1" sketch:type="MSArtboardGroup">
+                  <polygon id="star" sketch:type="MSShapeGroup" points="16 22 7 28 11 18 2 12 12 12 16 2 20 12 30 12 21 18 25 28 "></polygon>
+              </g>
+          </g>
+      </svg>
+    </div>
+    <div class="text">
+      <div class="span" id="subscriberText"></div>
+    </div>
+  </div><div class="item slick-slide" id="bits" data-slick-index="2" aria-hidden="true" tabindex="-1" style="width: 340px; position: relative; left: -680px; top: 0px; z-index: 998; opacity: 0;">
+    <div class="icon">
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100.000000pt" height="121.000000pt" viewBox="0 0 100.000000 121.000000" preserveAspectRatio="xMidYMid meet">
+        <g class="cls-1" transform="translate(0.000000,121.000000) scale(0.100000,-0.100000)" stroke="none">
+          <path d="M457 1163 c-13 -21 -117 -193 -231 -383 -114 -190 -213 -352 -219
+        -362 -12 -18 -22 -9 177 -171 276 -225 307 -249 319 -244 7 3 89 67 183 143
+        93 77 200 163 237 193 37 30 67 58 67 63 0 5 -107 187 -237 403 -167 277 -243
+        395 -255 395 -10 0 -28 -17 -41 -37z"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="text">
+      <div class="span" id="cheerText">: 0</div>
+    </div>
+  </div></div></div>
+  
+  
+  <div class="overlay"></div>
+</div>
+
+      <script>let userLocale = "en-US",
+    includeFollowers = true,
+    includeSubs = true,
+    includeCheers = true,
+    minCheer = 0;
+
+let userCurrency,
+    totalEvents = 0;
+
+window.addEventListener('onEventReceived', function (obj) {
+    if (!obj.detail.event) {
+      return;
+    }
+    if (typeof obj.detail.event.itemId !== "undefined") {
+        obj.detail.listener = "redemption-latest"
+    }
+    const listener = obj.detail.listener.split("-")[0];
+    const event = obj.detail.event;
+
+    if (listener === 'follower') {
+        if (includeFollowers) {
+            addEvent('follower', 'Follower', event.name);
+        }
+    } else if (listener === 'subscriber') {
+        if (includeSubs) {
+            if (event.amount === 'gift') {
+                addEvent('sub', `: Gifted Sub`, event.name);
+            } else {
+                addEvent('sub', ``, event.name);
+            }
+        }
+    } else if (listener === 'cheer') {
+        if (includeCheers && minCheer <= event.amount) {
+            addEvent('cheer', `: ${event.amount.toLocaleString()}`, event.name);
+        }
+    }
+});
+
+window.addEventListener('onWidgetLoad', function (obj) {
+    let data=obj["detail"]["session"]["data"];
+    let latestFollower = data["follower-latest"]["name"];
+    let latestSubscriber = data["subscriber-resub-latest"]["name"];
+	let latestCheer = data["cheer-latest"]["name"];
+  	let latestCheerAmount = data["cheer-latest"]["amount"];
+
+
+    setTimeout(function(){
+        $('#followerText').html(latestFollower);
+        $('#subscriberText').html(latestSubscriber);
+        $('#cheerText').html(latestCheer + ': ' + latestCheerAmount);
+    },50);
+    
+
+});
+
+
+function addEvent(type, text, username) {
+  if (type === 'follower') {
+    $('#followerText').html(username);
+  }
+  if (type === 'sub') {
+    $('#subscriberText').html(username + text);
+  }
+    if (type === 'cheer') {
+    $('#cheerText').html(username + text);
+  }
+}
+
+$('.e-carousel').on('beforeChange', function () {
+   $('.overlay').addClass('active');
+}).slick({
+   rows: 0,
+   slide: '.item',
+   fade: true,
+   arrows: false,
+   dots: false,
+   autoplay: true,
+   autoplaySpeed: 15000,
+   speed: 1500
+}).on('afterChange', function (event, slick, currentSlide) {
+   $('.overlay').removeClass('active');
+});</script>
+      
+      </body></html>

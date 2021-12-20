@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+<style>
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+  background-image: url("./splash/ps4_marvelsspiderman_2.png");
+  filter: brightness(0.5) blur(5px);
+  z-index: -1;
+}
+</style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Marvel's Spider-Man - CTNS: The Heist</title>
+  </head>
+  <body>
+<div class="row">
+
+  <div class="col-lg-5 px-5">
+    <p class="nowPlaying">Now Playing</p>
+    <p class="gameName">Marvel's Spider-Man - CTNS: The Heist</p>
+  </div>
+
+  <div class="col-lg-2">
+    <img class="logo mx-auto d-block" src="https://i.psnprofiles.com/games/8c6109/L4f1a85.png">
+  </div>
+
+  <div class="col-lg-5 px-5 text-end">
+    <p class="nowPlaying">Earned</p>
+    <p class="gameName"><span id="troEarn"></span> of <span id="total"></span> Trophies</p>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="row">
+    <div class="col-lg-12 px-5">
+      <div id="targetTrophies"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="background"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+  var trophies = [
+      {
+        "troName": "Seduced by the City",
+        "troDesc": "Completed a New Game+ playthrough",
+        "troType": "gold",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/54L6d23b1.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "Screwy",
+        "troDesc": "Get Spectacular or better in all Screwball Challenges",
+        "troType": "silver",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/55L841bc5.png",
+        "troAttr": "Locked"
+      },
+      {
+        "troName": "The Cat Came Back",
+        "troDesc": "Complete \"The Maria\" mission",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/56Lb50d1b.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Here Kitty-Kitty",
+        "troDesc": "Complete the Black Cat Chase",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/57Ld97b75.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Bye Felicia",
+        "troDesc": "Complete the \"Follow the Money\" mission",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/58L03044e.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "The Long Con",
+        "troDesc": "Complete the \"Like a Fiddle\" mission",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/59L2c9f5e.png",
+        "troAttr": "Hidden"
+      },
+      {
+        "troName": "Disorganised Crime",
+        "troDesc": "Complete all Crimes in a district",
+        "troType": "bronze",
+        "troIMG": "https://i.psnprofiles.com/games/8c6109/trophies/60L56644f.png",
+        "troAttr": "Locked"
+      }
+    ];
+
+  </script>
+
+  <script type = "text/javascript" src = "./main.js"></script>
+
+    </body>
+  </html>
