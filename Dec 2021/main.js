@@ -1,65 +1,158 @@
-var eT, tT, tP, bTL, bUL, sTL, sUL, gTL, gUL, tUL, tTL = "";
+let bTL, bTU, bTT, sTL, sTU, sTT, gTL, gTU, gTT, pTL, pTU, pTT, percentage;
 
-tT = trophies.length;
+generateListNames(trophies);
+generateTrophyTypes(trophies);
+trophyPercentage(trophyTypes);
 
-var trophiesUnlocked = "";
-let unlockedFiltered = trophies.filter(function (unlockFilter) {
-  return unlockFilter.troAttr == "Unlocked";
-});
 
-let tBT = trophies.filter(function (tB) {
-  return tB.troType == "Bronze";
-});
+function generateListNames()
+{
+  for (var i = 0; i <= this.length; i++)
+  {
+    this["list"+ (i)] = [this[i]];
+  }
+}
 
-let tST = trophies.filter(function (tS) {
-  return tS.troType == "Silver";
-});
+function generateTrophyTypes()
+{
+  trophyTypes = trophies.map((typeList) => typeList.trophies.map(({type, attribute}) => ({type, attribute})));
+}
 
-let tGT = trophies.filter(function (tG) {
-  return tG.troType == "Gold";
-});
+function trophyPercentage(trophyTypes)
+{
+  bTU = 0;
+  bTL = 0;
+  sTU = 0;
+  sTL = 0;
+  gTU = 0;
+  gTL = 0;
+  pTU = 0;
+  pTL = 0;
 
-let bTE = trophies.filter(function (bT) {
-  return bT.troAttr == "Unlocked" && bT.troType == "Bronze";
-});
+  for(let i = 0; i < trophyTypes.length; i++)
+  {
+    for(let j = 0; j < trophyTypes[i].length; j++)
+    {
+      trophyCount(trophyTypes[i][j]);
+    }
+  }
+  percentageCalculation(bTU, bTT, sTU, sTT, gTU, gTT, pTU, pTT);
+}
 
-let sTE = trophies.filter(function (sT) {
-  return sT.troAttr == "Unlocked" && sT.troType == "Silver";
-});
+function trophyCount(trophies)
+{
+  if (trophies.type == "Bronze" && trophies.attribute == "Locked")
+    bTL++;
+  else if (trophies.type == "Bronze" && trophies.attribute == "Unlocked")
+    bTU++;
+  else if (trophies.type == "Silver" && trophies.attribute == "Locked")
+    sTL++;
+  else if (trophies.type == "Silver" && trophies.attribute == "Unlocked")
+    sTU++;
+  else if (trophies.type == "Gold" && trophies.attribute == "Locked")
+    gTL++;
+  else if (trophies.type == "Gold" && trophies.attribute == "Unlocked")
+    gTU++;
+  else if (trophies.type == "Platinum" && trophies.attribute == "Locked")
+    pTL++;
+  else if (trophies.type == "Platinum" && trophies.attribute == "Unlocked")
+    pTU++;
 
-let gTE = trophies.filter(function (gT) {
-  return gT.troAttr == "Unlocked" && gT.troType == "Gold";
-});
+  bTT = bTL + bTU;
+  sTT = sTL + sTU;
+  gTT = gTL + gTU;
+  pTT = pTL + pTU;
 
-let pTE = trophies.filter(function (pT) {
-  return pT.troAttr == "Unlocked" && pT.troType == "Platinum";
-});
+    return bTU;
+    return bTT;
+    return sTU;
+    return sTT;
+    return gTU;
+    return gTT;
+    return pTU;
+    return pTT;
+}
 
-bTL = tBT.length;
-sTL = tST.length;
-gTL = tGT.length;
-bUL = bTE.length;
-sUL = sTE.length;
-gUL = gTE.length;
-pUL = pTE.length;
+function percentageCalculation(bTU, bTT, sTU, sTT, gTU, gTT, pTU, pTT)
+{
+  let numerator = (bTU * 15) + (sTU * 30) + (gTU * 90);
+  let denominator = (bTT * 15) + (sTT * 30) + (gTT * 90);
+  percentage = Math.round((numerator / denominator) * 99 + pTU);
 
-tUL = (bUL * 15) + (sUL * 30) + (gUL * 90);
-tTL = (bTL * 15) + (sTL * 30) + (gTL * 90);
-tP = Math.round((tUL/tTL) * 99);
+  let bar = "<div class='progress' style='height: 5px;'>";
+  bar += "<div class='progress-bar background-light' role='progressbar' style='width: " + percentage +"%' aria-valuenow='" + percentage +"' aria-valuemin='0' aria-valuemax='100'></div>";
 
-eT = unlockedFiltered.length;
+  document.getElementById("percent").innerHTML = percentage;
+  document.getElementById("bar").innerHTML = bar;
+}
 
-var troProg = "";
-troProg += "<div class='percentageBox'>";
-troProg += "<p class='percentageText'><span>" + tP + "</span>%</p>";
-troProg += "</div>";
-troProg += "<div class='progress' style='height: 5px;'>";
-troProg += "<div class='progress-bar background-light' role='progressbar' style='width: " + tP +"%' aria-valuenow='" + tP +"' aria-valuemin='0' aria-valuemax='100'></div>";
 
-troProg += "</div>";
 
-document.getElementById("progressBar").innerHTML = troProg;
 
+/*  var eT, tT, tP, bTL, bUL, sTL, sUL, gTL, gUL, tUL, tTL = "";
+
+  tT = trophies.length;
+
+  var trophiesUnlocked = "";
+  let unlockedFiltered = trophies.filter(function (unlockFilter) {
+    return unlockFilter.troAttr == "Unlocked";
+  });
+
+  let tBT = trophies.filter(function (tB) {
+    return tB.troType == "Bronze";
+  });
+
+  let tST = trophies.filter(function (tS) {
+    return tS.troType == "Silver";
+  });
+
+  let tGT = trophies.filter(function (tG) {
+    return tG.troType == "Gold";
+  });
+
+  let bTE = trophies.filter(function (bT) {
+    return bT.troAttr == "Unlocked" && bT.troType == "Bronze";
+  });
+
+  let sTE = trophies.filter(function (sT) {
+    return sT.troAttr == "Unlocked" && sT.troType == "Silver";
+  });
+
+  let gTE = trophies.filter(function (gT) {
+    return gT.troAttr == "Unlocked" && gT.troType == "Gold";
+  });
+
+  let pTE = trophies.filter(function (pT) {
+    return pT.troAttr == "Unlocked" && pT.troType == "Platinum";
+  });
+
+  bTL = tBT.length;
+  sTL = tST.length;
+  gTL = tGT.length;
+  bUL = bTE.length;
+  sUL = sTE.length;
+  gUL = gTE.length;
+  pUL = pTE.length;
+
+  tUL = (bUL * 15) + (sUL * 30) + (gUL * 90);
+  tTL = (bTL * 15) + (sTL * 30) + (gTL * 90);
+  tP = Math.round((tUL/tTL) * 99);
+
+  eT = unlockedFiltered.length;
+
+  var troProg = "";
+  troProg += "<div class='percentageBox'>";
+  troProg += "<p class='percentageText'><span>" + tP + "</span>%</p>";
+  troProg += "</div>";
+  troProg += "<div class='progress' style='height: 5px;'>";
+  troProg += "<div class='progress-bar background-light' role='progressbar' style='width: " + tP +"%' aria-valuenow='" + tP +"' aria-valuemin='0' aria-valuemax='100'></div>";
+
+  troProg += "</div>";
+
+  document.getElementById("progressBar").innerHTML = troProg;*/
+
+
+/*
 let trophyList1 = trophies.filter(function (getList1) {
   return getList1.troList == "1";
 });
@@ -351,7 +444,7 @@ troLockInfo += "</div>";
 document.getElementById("trophyLockedList").innerHTML = troLockInfo;*/
 
 
-
+/*
 var myIndex = 0;
 carousel();
 
@@ -366,3 +459,4 @@ function carousel() {
   x[myIndex-1].style.display = "block";
   setTimeout(carousel, 5000); // Change image every 2 seconds
 }
+*/

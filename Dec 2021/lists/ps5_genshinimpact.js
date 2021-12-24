@@ -1,461 +1,376 @@
 var trophies = [
   {
-    "troName": "The Path of Discovery",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Platinum",
-    "troIMG": "ps5_genshinimpact/1Lc0e655.png",
-    "troAttr": "Locked",
-    "troRarity": 3.4
+    "trophyListName": "Base Game",
+    "trophies": [
+      {
+        "name": "The Path of Discovery",
+        "type": "Platinum",
+        "img": "ps5_genshinimpact/1Lc0e655.png",
+        "attribute": "Locked",
+        "rarity": 3.4
+      },
+      {
+        "name": "Geo: Of Mountains High",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/2Laf5707.png",
+        "attribute": "Unlocked",
+        "rarity": 40
+      },
+      {
+        "name": "Onward and Upward (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/3L7ab71d.png",
+        "attribute": "Unlocked",
+        "rarity": 37.3
+      },
+      {
+        "name": "Onward and Upward (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/4L762c18.png",
+        "attribute": "Locked",
+        "rarity": 29.6
+      },
+      {
+        "name": "Onward and Upward (III)",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/5L584619.png",
+        "attribute": "Locked",
+        "rarity": 19
+      },
+      {
+        "name": "Re-Armed, Re-Forged (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/6L574fb4.png",
+        "attribute": "Unlocked",
+        "rarity": 34.5
+      },
+      {
+        "name": "Re-Armed, Re-Forged (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/7L0940d3.png",
+        "attribute": "Locked",
+        "rarity": 27.9
+      },
+      {
+        "name": "Re-Armed, Re-Forged (III)",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/8Ld60ece.png",
+        "attribute": "Locked",
+        "rarity": 17.9
+      },
+      {
+        "name": "Wind-Chasing Treasure Hunter (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/9L425aca.png",
+        "attribute": "Unlocked",
+        "rarity": 41
+      },
+      {
+        "name": "Wind-Chasing Treasure Hunter (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/10L1dc71f.png",
+        "attribute": "Unlocked",
+        "rarity": 28.8
+      },
+      {
+        "name": "Wind-Chasing Treasure Hunter (III)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/11Lc8a7c9.png",
+        "attribute": "Locked",
+        "rarity": 11.6
+      },
+      {
+        "name": "Rock-Steady Treasure Hunter (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/12L10880a.png",
+        "attribute": "Unlocked",
+        "rarity": 30.9
+      },
+      {
+        "name": "Rock-Steady Treasure Hunter (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/13L239842.png",
+        "attribute": "Locked",
+        "rarity": 22.7
+      },
+      {
+        "name": "Rock-Steady Treasure Hunter (III)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/14L3bb651.png",
+        "attribute": "Locked",
+        "rarity": 10
+      },
+      {
+        "name": "Explorer: Unswerving",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/15Lf4482d.png",
+        "attribute": "Unlocked",
+        "rarity": 10.9
+      },
+      {
+        "name": "Explorer: Beloved of the Anemo Archon",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/16Le7d3cc.png",
+        "attribute": "Unlocked",
+        "rarity": 23
+      },
+      {
+        "name": "Markmanship: Nothing Special, Just Practice",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/17L16a2ee.png",
+        "attribute": "Unlocked",
+        "rarity": 16.6
+      },
+      {
+        "name": "Journey: The End of the Beginning",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/18Lfa7e83.png",
+        "attribute": "Unlocked",
+        "rarity": 42.6
+      },
+      {
+        "name": "Mountain of Treasure (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/19L7df0c0.png",
+        "attribute": "Locked",
+        "rarity": 32.9
+      },
+      {
+        "name": "Mountain of Treasure (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/20L00ff29.png",
+        "attribute": "Locked",
+        "rarity": 26.9
+      },
+      {
+        "name": "Mountain of Treasure (III)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/21Lb94e94.png",
+        "attribute": "Locked",
+        "rarity": 15.2
+      },
+      {
+        "name": "Scarlet Sprouts (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/22L7ce1de.png",
+        "attribute": "Locked",
+        "rarity": 28.4
+      },
+      {
+        "name": "Scarlet Sprouts (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/23L98bf0f.png",
+        "attribute": "Locked",
+        "rarity": 16.7
+      },
+      {
+        "name": "Scarlet Sprouts (III)",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/24L8eb533.png",
+        "attribute": "Locked",
+        "rarity": 14
+      },
+      {
+        "name": "Journey: A New Star Approaches",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/25L89a751.png",
+        "attribute": "Locked",
+        "rarity": 32.1
+      },
+      {
+        "name": "Mondstadt: Contiental Explorer",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/26L01f8d8.png",
+        "attribute": "Unlocked",
+        "rarity": 43.8
+      },
+      {
+        "name": "Mondstadt: Brush of a Thousand Winds",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/27Lb99ece.png",
+        "attribute": "Unlocked",
+        "rarity": 37.4
+      },
+      {
+        "name": "Mondstadt: Let the Wind Lead",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/28Lf6b8a9.png",
+        "attribute": "Unlocked",
+        "rarity": 24.4
+      },
+      {
+        "name": "Dragonspine: Skyfrost Nail",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/29L24ffca.png",
+        "attribute": "Locked",
+        "rarity": 31.3
+      },
+      {
+        "name": "Mondstadt: Megastar in Mondstadt",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/30Ldfc3c6.png",
+        "attribute": "Locked",
+        "rarity": 14.4
+      },
+      {
+        "name": "Liyue: Continental Explorer",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/31L74914b.png",
+        "attribute": "Unlocked",
+        "rarity": 40.3
+      },
+      {
+        "name": "Liyue: Surveyor of Stone",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/32Lc92321.png",
+        "attribute": "Unlocked",
+        "rarity": 29.4
+      },
+      {
+        "name": "Liyue: Unmovable Mountain",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/33Le6bdca.png",
+        "attribute": "Locked",
+        "rarity": 19
+      },
+      {
+        "name": "Liyue: Legend in Liyue",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/34L9d4031.png",
+        "attribute": "Locked",
+        "rarity": 12.8
+      },
+      {
+        "name": "Down We Go (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/35Ldbf0a9.png",
+        "attribute": "Locked",
+        "rarity": 28.7
+      },
+      {
+        "name": "Down We Go (II)",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/36Lce8249.png",
+        "attribute": "Locked",
+        "rarity": 19.3
+      },
+      {
+        "name": "Down We Go (III)",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/37Lfd2c59.png",
+        "attribute": "Locked",
+        "rarity": 7.9
+      },
+      {
+        "name": "Abyss: Abyssal Crusader",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/38L2c4370.png",
+        "attribute": "Locked",
+        "rarity": 17.3
+      }
+    ]
   },
   {
-    "troName": "Geo: Of Mountains High",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/2Laf5707.png",
-    "troAttr": "Unlocked",
-    "troRarity": 40
+    "trophyListName": "Genshin Impact Trophy: Series II",
+    "trophies":
+    [
+      {
+        "name": "Continental Explorer: Land of Surging Thunder",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/39L32a62d.png",
+        "attribute": "Locked",
+        "rarity": 26.7
+      },
+      {
+        "name": "Thunderbolting Across the Land",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/40Lb12eb6.png",
+        "attribute": "Locked",
+        "rarity": 17.9
+      },
+      {
+        "name": "Inazuma: Eternal Thunder",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/41L7f3b54.png",
+        "attribute": "Locked",
+        "rarity": 4.6
+      },
+      {
+        "name": "Lightning-Riding Treasure Hunter (I)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/42L35d5d7.png",
+        "attribute": "Locked",
+        "rarity": 19
+      },
+      {
+        "name": "Lightning-Riding Treasure Hunter (II)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/43L7b4aca.png",
+        "attribute": "Locked",
+        "rarity": 13.1
+      },
+      {
+        "name": "Lightning-Riding Treasure Hunter (III)",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/44L1700f2.png",
+        "attribute": "Locked",
+        "rarity": 5.7
+      }
+    ]
   },
   {
-    "troName": "Onward and Upward (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/3L7ab71d.png",
-    "troAttr": "Unlocked",
-    "troRarity": 37.3
-  },
-  {
-    "troName": "Onward and Upward (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/4L762c18.png",
-    "troAttr": "Locked",
-    "troRarity": 29.6
-  },
-  {
-    "troName": "Onward and Upward (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/5L584619.png",
-    "troAttr": "Locked",
-    "troRarity": 19
-  },
-  {
-    "troName": "Re-Armed, Re-Forged (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/6L574fb4.png",
-    "troAttr": "Unlocked",
-    "troRarity": 34.5
-  },
-  {
-    "troName": "Re-Armed, Re-Forged (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/7L0940d3.png",
-    "troAttr": "Locked",
-    "troRarity": 27.9
-  },
-  {
-    "troName": "Re-Armed, Re-Forged (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/8Ld60ece.png",
-    "troAttr": "Locked",
-    "troRarity": 17.9
-  },
-  {
-    "troName": "Wind-Chasing Treasure Hunter (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/9L425aca.png",
-    "troAttr": "Unlocked",
-    "troRarity": 41
-  },
-  {
-    "troName": "Wind-Chasing Treasure Hunter (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/10L1dc71f.png",
-    "troAttr": "Unlocked",
-    "troRarity": 28.8
-  },
-  {
-    "troName": "Wind-Chasing Treasure Hunter (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/11Lc8a7c9.png",
-    "troAttr": "Locked",
-    "troRarity": 11.6
-  },
-  {
-    "troName": "Rock-Steady Treasure Hunter (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/12L10880a.png",
-    "troAttr": "Unlocked",
-    "troRarity": 30.9
-  },
-  {
-    "troName": "Rock-Steady Treasure Hunter (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/13L239842.png",
-    "troAttr": "Locked",
-    "troRarity": 22.7
-  },
-  {
-    "troName": "Rock-Steady Treasure Hunter (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/14L3bb651.png",
-    "troAttr": "Locked",
-    "troRarity": 10
-  },
-  {
-    "troName": "Explorer: Unswerving",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/15Lf4482d.png",
-    "troAttr": "Unlocked",
-    "troRarity": 10.9
-  },
-  {
-    "troName": "Explorer: Beloved of the Anemo Archon",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/16Le7d3cc.png",
-    "troAttr": "Unlocked",
-    "troRarity": 23
-  },
-  {
-    "troName": "Markmanship: Nothing Special, Just Practice",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/17L16a2ee.png",
-    "troAttr": "Unlocked",
-    "troRarity": 16.6
-  },
-  {
-    "troName": "Journey: The End of the Beginning",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/18Lfa7e83.png",
-    "troAttr": "Unlocked",
-    "troRarity": 42.6
-  },
-  {
-    "troName": "Mountain of Treasure (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/19L7df0c0.png",
-    "troAttr": "Locked",
-    "troRarity": 32.9
-  },
-  {
-    "troName": "Mountain of Treasure (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/20L00ff29.png",
-    "troAttr": "Locked",
-    "troRarity": 26.9
-  },
-  {
-    "troName": "Mountain of Treasure (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/21Lb94e94.png",
-    "troAttr": "Locked",
-    "troRarity": 15.2
-  },
-  {
-    "troName": "Scarlet Sprouts (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/22L7ce1de.png",
-    "troAttr": "Locked",
-    "troRarity": 28.4
-  },
-  {
-    "troName": "Scarlet Sprouts (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/23L98bf0f.png",
-    "troAttr": "Locked",
-    "troRarity": 16.7
-  },
-  {
-    "troName": "Scarlet Sprouts (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/24L8eb533.png",
-    "troAttr": "Locked",
-    "troRarity": 14
-  },
-  {
-    "troName": "Journey: A New Star Approaches",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/25L89a751.png",
-    "troAttr": "Locked",
-    "troRarity": 32.1
-  },
-  {
-    "troName": "Mondstadt: Contiental Explorer",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/26L01f8d8.png",
-    "troAttr": "Unlocked",
-    "troRarity": 43.8
-  },
-  {
-    "troName": "Mondstadt: Brush of a Thousand Winds",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/27Lb99ece.png",
-    "troAttr": "Unlocked",
-    "troRarity": 37.4
-  },
-  {
-    "troName": "Mondstadt: Let the Wind Lead",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/28Lf6b8a9.png",
-    "troAttr": "Unlocked",
-    "troRarity": 24.4
-  },
-  {
-    "troName": "Dragonspine: Skyfrost Nail",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/29L24ffca.png",
-    "troAttr": "Locked",
-    "troRarity": 31.3
-  },
-  {
-    "troName": "Mondstadt: Megastar in Mondstadt",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/30Ldfc3c6.png",
-    "troAttr": "Locked",
-    "troRarity": 14.4
-  },
-  {
-    "troName": "Liyue: Continental Explorer",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/31L74914b.png",
-    "troAttr": "Unlocked",
-    "troRarity": 40.3
-  },
-  {
-    "troName": "Liyue: Surveyor of Stone",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/32Lc92321.png",
-    "troAttr": "Unlocked",
-    "troRarity": 29.4
-  },
-  {
-    "troName": "Liyue: Unmovable Mountain",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/33Le6bdca.png",
-    "troAttr": "Locked",
-    "troRarity": 19
-  },
-  {
-    "troName": "Liyue: Legend in Liyue",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/34L9d4031.png",
-    "troAttr": "Locked",
-    "troRarity": 12.8
-  },
-  {
-    "troName": "Down We Go (I)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/35Ldbf0a9.png",
-    "troAttr": "Locked",
-    "troRarity": 28.7
-  },
-  {
-    "troName": "Down We Go (II)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/36Lce8249.png",
-    "troAttr": "Locked",
-    "troRarity": 19.3
-  },
-  {
-    "troName": "Down We Go (III)",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/37Lfd2c59.png",
-    "troAttr": "Locked",
-    "troRarity": 7.9
-  },
-  {
-    "troName": "Abyss: Abyssal Crusader",
-    "troListName": "Base Game",
-    "troList": 1,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/38L2c4370.png",
-    "troAttr": "Locked",
-    "troRarity": 17.3
-  },
-  {
-    "troName": "Continental Explorer: Land of Surging Thunder",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/39L32a62d.png",
-    "troAttr": "Locked",
-    "troRarity": 26.7
-  },
-  {
-    "troName": "Thunderbolting Across the Land",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/40Lb12eb6.png",
-    "troAttr": "Locked",
-    "troRarity": 17.9
-  },
-  {
-    "troName": "Inazuma: Eternal Thunder",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/41L7f3b54.png",
-    "troAttr": "Locked",
-    "troRarity": 4.6
-  },
-  {
-    "troName": "Lightning-Riding Treasure Hunter (I)",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/42L35d5d7.png",
-    "troAttr": "Locked",
-    "troRarity": 19
-  },
-  {
-    "troName": "Lightning-Riding Treasure Hunter (II)",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/43L7b4aca.png",
-    "troAttr": "Locked",
-    "troRarity": 13.1
-  },
-  {
-    "troName": "Lightning-Riding Treasure Hunter (III)",
-    "troListName": "Genshin Impact Trophy: Series II",
-    "troList": 2,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/44L1700f2.png",
-    "troAttr": "Locked",
-    "troRarity": 5.7
-  },
-  {
-    "troName": "Inazuma: Divine Roots",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Gold",
-    "troIMG": "ps5_genshinimpact/45L377e84.png",
-    "troAttr": "Locked",
-    "troRarity": 0
-  },
-  {
-    "troName": "Inazuma: Illustrious in Inazuma",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Silver",
-    "troIMG": "ps5_genshinimpact/46L7e4747.png",
-    "troAttr": "Locked",
-    "troRarity": 6.2
-  },
-  {
-    "troName": "Exploration: Tales of Monstrous Madness",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/47L80a844.png",
-    "troAttr": "Locked",
-    "troRarity": 0.2
-  },
-  {
-    "troName": "Inazuma: Yamada Go's Wooden Mallet",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/48Ld0cd8c.png",
-    "troAttr": "Locked",
-    "troRarity": 5.6
-  },
-  {
-    "troName": "Inazuma: Second Blooming",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/49Lcff2d1.png",
-    "troAttr": "Locked",
-    "troRarity": 2.6
-  },
-  {
-    "troName": "Inazuma: Jackpot",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/50L2b5279.png",
-    "troAttr": "Locked",
-    "troRarity": 16.2
-  },
-  {
-    "troName": "Electro: Unlimited Power!",
-    "troListName": "Genshin Impact Trophy: Series III",
-    "troList": 3,
-    "troType": "Bronze",
-    "troIMG": "ps5_genshinimpact/51Ld6788d.png",
-    "troAttr": "Locked",
-    "troRarity": 23.6
+    "trophyListName": "Genshin Impact Trophy: Series III",
+    "trophies":
+    [
+      {
+        "name": "Inazuma: Divine Roots",
+        "type": "Gold",
+        "img": "ps5_genshinimpact/45L377e84.png",
+        "attribute": "Locked",
+        "rarity": 0
+      },
+      {
+        "name": "Inazuma: Illustrious in Inazuma",
+        "type": "Silver",
+        "img": "ps5_genshinimpact/46L7e4747.png",
+        "attribute": "Locked",
+        "rarity": 6.2
+      },
+      {
+        "name": "Exploration: Tales of Monstrous Madness",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/47L80a844.png",
+        "attribute": "Locked",
+        "rarity": 0.2
+      },
+      {
+        "name": "Inazuma: Yamada Go's Wooden Mallet",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/48Ld0cd8c.png",
+        "attribute": "Locked",
+        "rarity": 5.6
+      },
+      {
+        "name": "Inazuma: Second Blooming",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/49Lcff2d1.png",
+        "attribute": "Locked",
+        "rarity": 2.6
+      },
+      {
+        "name": "Inazuma: Jackpot",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/50L2b5279.png",
+        "attribute": "Locked",
+        "rarity": 16.2
+      },
+      {
+        "name": "Electro: Unlimited Power!",
+        "type": "Bronze",
+        "img": "ps5_genshinimpact/51Ld6788d.png",
+        "attribute": "Locked",
+        "rarity": 23.6
+      }
+    ]
   }
 ]
