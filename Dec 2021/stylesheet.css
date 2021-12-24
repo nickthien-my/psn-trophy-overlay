@@ -209,13 +209,11 @@ li {
   padding-top: 20px;
 }
 
-.trophyUnlocked {
+img.caseTrophies {
   margin-top: 5px;
   height: 40px;
 }
 
-.trophyLocked {
-  margin-top: 5px;
-  height: 40px;
+img.Locked {
   filter: grayscale(1) opacity(0.5);
 }

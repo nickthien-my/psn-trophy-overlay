@@ -88,8 +88,12 @@ function percentageCalculation(bTU, bTT, sTU, sTT, gTU, gTT, pTU, pTT)
 
 function trophyCaseHandler()
 {
+  let troHandler = "";
   for(let i = 0; i < trophies.length; i++)
-    document.getElementById("trophyCase" + (i)).innerHTML = printTrophyCase(trophies[i]);
+  {
+    troHandler += printTrophyCase(trophies[i]);
+  }
+  document.getElementById("trophyInfo").innerHTML = troHandler;
 }
 
 function printTrophyCase(listIndex)
@@ -116,9 +120,9 @@ function getTrophyCase(listIndex)
   let trophyCase = "";
   for (let i = 0; i < listIndex.trophies.length; i++) {
     if(listIndex.trophies[i].attribute == "Unlocked") {
-      trophyCase += "<img class='trophyUnlocked' src='./trophyImg/" + listIndex.trophies[i].img + "'>";
+      trophyCase += "<img class='caseTrophies' src='../trophyImg/" + listIndex.trophies[i].img + "'>";
     } else {
-      trophyCase += "<img class='trophyLocked' src='./trophyImg/" + listIndex.trophies[i].img + "'>";
+      trophyCase += "<img class='caseTrophies Locked' src='../trophyImg/" + listIndex.trophies[i].img + "'>";
     }
   }
   return trophyCase;
@@ -131,20 +135,37 @@ function getTrophyTracker(listIndex)
     return lockFilter.attribute == "Locked";
   });
 
-  let raritySorted = lockedTrophyList.sort((first, second) => second.rarity - first.rarity);
-  const trackerList = raritySorted.slice(0, 5);
-
   let trophyTracker = "";
-  trophyTracker += "<p class='troListName' style='padding-top: 20px;'>Trophy Tracker</p>";
-  trophyTracker += "<ul>";
-  for (i = 0; i < trackerList.length; i++) {
-    trophyTracker += "<li style='background-image: url(\"./trophyImg/" + trackerList[i].img + "\");' class = '" + trackerList[i].type + "'>" + trackerList[i].name + "</li>";
 
+  if(lockedTrophyList.length > 0) {
+    let raritySorted = lockedTrophyList.sort((first, second) => second.rarity - first.rarity);
+    const trackerList = raritySorted.slice(0, 5);
+
+
+    trophyTracker += "<p class='troListName' style='padding-top: 20px;'>Trophy Tracker</p>";
+    trophyTracker += "<ul>";
+    for (i = 0; i < trackerList.length; i++) {
+      trophyTracker += "<li style='background-image: url(\"../trophyImg/" + trackerList[i].img + "\");' class = '" + trackerList[i].type + "'>" + trackerList[i].name + "</li>";
+    }
+    trophyTracker += "</ul>";
   }
-  trophyTracker += "</ul>";
   return trophyTracker;
 }
 
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var index;
+  var x = document.getElementsByClassName("troCase");
+  for (index = 0; index < x.length; index++) {
+    x[index].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 600000); // Change image every 2 seconds
+}
 
 
 
@@ -334,19 +355,3 @@ let lockedTrophyList2 = trophyList2.filter(function (lockFilter2) {
   return lockFilter2.troAttr == "Locked";
 });
 */
-
-
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var index;
-  var x = document.getElementsByClassName("troCase");
-  for (index = 0; index < x.length; index++) {
-    x[index].style.display = "none";
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}
-  x[myIndex-1].style.display = "block";
-  setTimeout(carousel, 5000); // Change image every 2 seconds
-}
