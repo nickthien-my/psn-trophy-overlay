@@ -1,12 +1,20 @@
 let bTL, bTU, bTT, sTL, sTU, sTT, gTL, gTU, gTT, pTL, pTU, pTT, percentage;
-trophyPercentage(generateTrophyTypes(trophies));
 trophyInfoHandler(trophies);
+
+function trophyInfoHandler(trophies)
+{
+  generateTrophyTypes(trophies);
+  trophyPercentage(trophyTypes);
+  trophyCaseHandler(trophies);
+}
+
 
 function generateTrophyTypes()
 {
   trophyTypes = trophies.map((typeList) => typeList.trophies.map(({type, attribute}) => ({type, attribute})));
   return trophyTypes;
 }
+
 
 function trophyPercentage(trophyTypes)
 {
@@ -19,15 +27,16 @@ function trophyPercentage(trophyTypes)
   pTU = 0;
   pTL = 0;
 
-  trophyTypes.forEach((trophyLists) =>
+  for(let i = 0; i < trophyTypes.length; i++)
   {
-    trophyLists.forEach((trophies) =>
+    for(let j = 0; j < trophyTypes[i].length; j++)
     {
-      trophyCount(trophies);
-    });
-  });
+      trophyCount(trophyTypes[i][j]);
+    }
+  }
   percentageCalculation(bTU, bTT, sTU, sTT, gTU, gTT, pTU, pTT);
 }
+
 
 function trophyCount(trophies)
 {
@@ -86,122 +95,15 @@ function percentageCalculation(bTU, bTT, sTU, sTT, gTU, gTT, pTU, pTT)
   document.getElementById("bar").innerHTML = bar;
 }
 
-
-function trophyInfoHandler(trophies) {
-  trophies.forEach((trophyLists) => {
-    printTrophyInfo(trophyLists);
-    printTrackerInfo(trophyLists);
-  });
-}
-
-function printTrophyInfo(trophyList) {
-  const div = document.getElementById('trophyInfo');
-  const troCase = document.createElement('div');
-  const listName = document.createElement('p');
-  troCase.classList.add('troCaseLeft');
-  listName.classList.add('troListName');
-  listName.textContent = trophyList.trophyListName;
-  div.append(troCase);
-  troCase.append(listName);
-
-  trophyList.trophies.forEach((item) => {
-    var trophyImg = document.createElement('img');
-    trophyImg.classList.add('caseTrophies');
-    if (item.attribute == "Locked" || item.attribute == "Hidden")
-      trophyImg.classList.add('Locked');
-    trophyImg.src = "../trophyImg/" + item.img + ".png";
-    trophyImg.alt = item.name;
-    troCase.appendChild(trophyImg);
-  });
-}
-
-function  printTrackerInfo(trophyList) {
-  let lockedTrophyList = trophyList.trophies.filter(function (lockFilter) {
-    return lockFilter.attribute == "Locked" || lockFilter.attribute == "Hidden";
-  });
-  if(lockedTrophyList.length > 0) {
-    let raritySorted = lockedTrophyList.sort((first, second) => second.rarity - first.rarity);
-    const trackerList = raritySorted.slice(0, 5);
-
-    const div = document.getElementById('columnRight');
-    const carousel = document.createElement('div');
-    const infoContainer = document.createElement('div');
-    const header = document.createElement('p');
-    const ul = document.createElement('ul');
-    carousel.classList.add('troCaseRight');
-    infoContainer.classList.add('infoContainerRight');
-    header.classList.add('troListName');
-    header.textContent = "Trophy Tracker";
-    div.append(carousel);
-    carousel.append(infoContainer);
-    infoContainer.append(header);
-    header.append(ul);
-
-    trackerList.forEach((item) => {
-      const li = document.createElement('li');
-      const trophyName = document.createElement('p');
-      li.style.backgroundImage = "url('../trophyImg/" + item.img + ".png')";
-      trophyName.classList.add('listName');
-      if (item.attribute == "Hidden") {
-        trophyName.textContent = "??????";
-      } else {
-        trophyName.classList.add(item.grade);
-        trophyName.textContent = item.name;
-      }
-      li.append(trophyName);
-      ul.appendChild(li);
-    });
-
-  } else {
-    const div = document.getElementById('columnRight');
-    const carousel = document.createElement('div');
-    carousel.classList.add('troCaseRight');
-    div.append(carousel);
+function trophyCaseHandler()
+{
+  let troCaseHandler = "";
+  for(let i = 0; i < trophies.length; i++)
+  {
+    troCaseHandler += printTrophyCase(trophies[i]);
   }
-
+  document.getElementById("trophyInfo").innerHTML = troCaseHandler;
 }
-
-
-var myIndexLeft = 0;
-var myIndexRight = 0;
-carouselLeft();
-carouselRight();
-
-function carouselLeft() {
-  var index;
-  var x = document.getElementsByClassName("troCaseLeft");
-  for (index = 0; index < x.length; index++) {
-    x[index].style.display = "none";
-  }
-  myIndexLeft++;
-  if (myIndexLeft > x.length) {myIndexLeft = 1}
-  x[myIndexLeft-1].style.display = "block";
-  setTimeout(carouselLeft, 10000); // Change image every 2 seconds
-}
-
-function carouselRight() {
-  var index;
-  var x = document.getElementsByClassName("troCaseRight");
-  for (index = 0; index < x.length; index++) {
-    x[index].style.display = "none";
-  }
-  myIndexRight++;
-  if (myIndexRight > x.length) {myIndexRight = 1}
-  x[myIndexRight-1].style.display = "block";
-  setTimeout(carouselRight, 10000); // Change image every 2 seconds
-}
-
-
-/*
-
-
-
-  if(lockedTrophyList.length > 0) {
-
-let raritySorted = lockedTrophyList.sort((first, second) => second.rarity - first.rarity);
-  const trackerList = raritySorted.slice(0, 5);
-
-
 
 function printTrophyCase(listIndex)
 {
@@ -266,7 +168,22 @@ function getTrophyTracker(listIndex)
     trophyTracker += "</div>"
   }
   return trophyTracker;
-} */
+}
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var index;
+  var x = document.getElementsByClassName("troCase");
+  for (index = 0; index < x.length; index++) {
+    x[index].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 10000); // Change image every 2 seconds
+}
 
 
 /*
