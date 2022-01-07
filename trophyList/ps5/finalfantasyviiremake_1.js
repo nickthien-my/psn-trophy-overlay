@@ -1,7 +1,8 @@
 var trophies = [
   {
     "trophyListName": "Final Fantasy VII Remake",
-    "trophyListLogo": "ps5/finalfantasyviiremake/1",
+    "version": "ps5",
+    "trophyID": "finalfantasyviiremake_1",
     "trophies": [
       {
         "id": 1,
@@ -11,7 +12,7 @@ var trophies = [
         "earned date": "",
         "rarity": 6.8,
         "description": "Earn all FINAL FANTASY VII REMAKE trophies.",
-        "img": "ps5/finalfantasyviiremake/1"
+        "img": "1"
       },
       {
         "id": 2,
@@ -21,7 +22,7 @@ var trophies = [
         "earned date": "",
         "rarity": 76.7,
         "description": "Complete Chapter 1.",
-        "img": "ps5/finalfantasyviiremake/2"
+        "img": "2"
       },
       {
         "id": 3,
@@ -31,7 +32,7 @@ var trophies = [
         "earned date": "",
         "rarity": 71,
         "description": "Complete Chapter 2.",
-        "img": "ps5/finalfantasyviiremake/3"
+        "img": "3"
       },
       {
         "id": 4,
@@ -41,7 +42,7 @@ var trophies = [
         "earned date": "",
         "rarity": 63.5,
         "description": "Complete Chapter 3.",
-        "img": "ps5/finalfantasyviiremake/4"
+        "img": "4"
       },
       {
         "id": 5,
@@ -51,7 +52,7 @@ var trophies = [
         "earned date": "",
         "rarity": 61.3,
         "description": "Complete Chapter 4.",
-        "img": "ps5/finalfantasyviiremake/5"
+        "img": "5"
       },
       {
         "id": 6,
@@ -61,7 +62,7 @@ var trophies = [
         "earned date": "",
         "rarity": 60,
         "description": "Complete Chapter 5.",
-        "img": "ps5/finalfantasyviiremake/6"
+        "img": "6"
       },
       {
         "id": 7,
@@ -71,7 +72,7 @@ var trophies = [
         "earned date": "",
         "rarity": 58.6,
         "description": "Complete Chapter 6.",
-        "img": "ps5/finalfantasyviiremake/7"
+        "img": "7"
       },
       {
         "id": 8,
@@ -81,7 +82,7 @@ var trophies = [
         "earned date": "",
         "rarity": 57.7,
         "description": "Complete Chapter 7.",
-        "img": "ps5/finalfantasyviiremake/8"
+        "img": "8"
       },
       {
         "id": 9,
@@ -91,7 +92,7 @@ var trophies = [
         "earned date": "",
         "rarity": 53.9,
         "description": "Complete Chapter 8.",
-        "img": "ps5/finalfantasyviiremake/9"
+        "img": "9"
       },
       {
         "id": 10,
@@ -101,7 +102,7 @@ var trophies = [
         "earned date": "",
         "rarity": 50.8,
         "description": "Complete Chapter 9.",
-        "img": "ps5/finalfantasyviiremake/10"
+        "img": "10"
       },
       {
         "id": 11,
@@ -111,7 +112,7 @@ var trophies = [
         "earned date": "",
         "rarity": 50.1,
         "description": "Complete Chapter 10.",
-        "img": "ps5/finalfantasyviiremake/11"
+        "img": "11"
       },
       {
         "id": 12,
@@ -121,7 +122,7 @@ var trophies = [
         "earned date": "",
         "rarity": 49.2,
         "description": "Complete Chapter 11.",
-        "img": "ps5/finalfantasyviiremake/12"
+        "img": "12"
       },
       {
         "id": 13,
@@ -131,7 +132,7 @@ var trophies = [
         "earned date": "",
         "rarity": 48.6,
         "description": "Complete Chapter 12.",
-        "img": "ps5/finalfantasyviiremake/13"
+        "img": "13"
       },
       {
         "id": 14,
@@ -141,7 +142,7 @@ var trophies = [
         "earned date": "",
         "rarity": 47.6,
         "description": "Complete Chapter 13.",
-        "img": "ps5/finalfantasyviiremake/14"
+        "img": "14"
       },
       {
         "id": 15,
@@ -151,7 +152,7 @@ var trophies = [
         "earned date": "",
         "rarity": 44.9,
         "description": "Complete Chapter 14.",
-        "img": "ps5/finalfantasyviiremake/15"
+        "img": "15"
       },
       {
         "id": 16,
@@ -161,7 +162,7 @@ var trophies = [
         "earned date": "",
         "rarity": 44.5,
         "description": "Complete Chapter 15.",
-        "img": "ps5/finalfantasyviiremake/16"
+        "img": "16"
       },
       {
         "id": 17,
@@ -171,7 +172,7 @@ var trophies = [
         "earned date": "",
         "rarity": 43.5,
         "description": "Complete Chapter 16.",
-        "img": "ps5/finalfantasyviiremake/17"
+        "img": "17"
       },
       {
         "id": 18,
@@ -181,7 +182,7 @@ var trophies = [
         "earned date": "",
         "rarity": 42.7,
         "description": "Complete Chapter 17.",
-        "img": "ps5/finalfantasyviiremake/18"
+        "img": "18"
       },
       {
         "id": 19,
@@ -191,7 +192,7 @@ var trophies = [
         "earned date": "",
         "rarity": 41.9,
         "description": "Complete Chapter 18.",
-        "img": "ps5/finalfantasyviiremake/19"
+        "img": "19"
       },
       {
         "id": 20,
@@ -201,7 +202,7 @@ var trophies = [
         "earned date": "",
         "rarity": 85.4,
         "description": "Win a battle.",
-        "img": "ps5/finalfantasyviiremake/20"
+        "img": "20"
       },
       {
         "id": 21,
@@ -211,7 +212,7 @@ var trophies = [
         "earned date": "",
         "rarity": 82.7,
         "description": "Exploit an enemy's weakness.",
-        "img": "ps5/finalfantasyviiremake/21"
+        "img": "21"
       },
       {
         "id": 22,
@@ -221,7 +222,7 @@ var trophies = [
         "earned date": "",
         "rarity": 75.5,
         "description": "Free a bound ally.",
-        "img": "ps5/finalfantasyviiremake/22"
+        "img": "22"
       },
       {
         "id": 23,
@@ -231,7 +232,7 @@ var trophies = [
         "earned date": "",
         "rarity": 87.1,
         "description": "Stagger an enemy.",
-        "img": "ps5/finalfantasyviiremake/23"
+        "img": "23"
       },
       {
         "id": 24,
@@ -241,7 +242,7 @@ var trophies = [
         "earned date": "",
         "rarity": 62.4,
         "description": "Collect 3 music discs.",
-        "img": "ps5/finalfantasyviiremake/24"
+        "img": "24"
       },
       {
         "id": 25,
@@ -251,7 +252,7 @@ var trophies = [
         "earned date": "",
         "rarity": 66.2,
         "description": "Complete a quest.",
-        "img": "ps5/finalfantasyviiremake/25"
+        "img": "25"
       },
       {
         "id": 26,
@@ -261,7 +262,7 @@ var trophies = [
         "earned date": "",
         "rarity": 64.7,
         "description": "Max out a weapon's proficiency.",
-        "img": "ps5/finalfantasyviiremake/26"
+        "img": "26"
       },
       {
         "id": 27,
@@ -271,7 +272,7 @@ var trophies = [
         "earned date": "",
         "rarity": 70,
         "description": "Level up an orb of materia.",
-        "img": "ps5/finalfantasyviiremake/27"
+        "img": "27"
       },
       {
         "id": 28,
@@ -281,7 +282,7 @@ var trophies = [
         "earned date": "",
         "rarity": 65.2,
         "description": "Invoke a summon.",
-        "img": "ps5/finalfantasyviiremake/28"
+        "img": "28"
       },
       {
         "id": 29,
@@ -291,7 +292,7 @@ var trophies = [
         "earned date": "",
         "rarity": 14.1,
         "description": "Get praised by Jessie at the end of the motorcyle mini-game.",
-        "img": "ps5/finalfantasyviiremake/29"
+        "img": "29"
       },
       {
         "id": 30,
@@ -301,7 +302,7 @@ var trophies = [
         "earned date": "",
         "rarity": 40.1,
         "description": "Rise to the top of the Seventh Heaven darts leaderboard.",
-        "img": "ps5/finalfantasyviiremake/30"
+        "img": "30"
       },
       {
         "id": 31,
@@ -311,7 +312,7 @@ var trophies = [
         "earned date": "",
         "rarity": 49.3,
         "description": "Obtain the Chocobo & Moogle materia.",
-        "img": "ps5/finalfantasyviiremake/31"
+        "img": "31"
       },
       {
         "id": 32,
@@ -321,7 +322,7 @@ var trophies = [
         "earned date": "",
         "rarity": 56.9,
         "description": "Bypass the delta-level security lock in Mako Reactor 5.",
-        "img": "ps5/finalfantasyviiremake/32"
+        "img": "32"
       },
       {
         "id": 33,
@@ -331,7 +332,7 @@ var trophies = [
         "earned date": "",
         "rarity": 51.1,
         "description": "Complete all Normal difficulty Whack-a-Box challenges.",
-        "img": "ps5/finalfantasyviiremake/33"
+        "img": "33"
       },
       {
         "id": 34,
@@ -341,7 +342,7 @@ var trophies = [
         "earned date": "",
         "rarity": 54.9,
         "description": "Decorate the Leaf House with a floral arrangement.",
-        "img": "ps5/finalfantasyviiremake/34"
+        "img": "34"
       },
       {
         "id": 35,
@@ -351,7 +352,7 @@ var trophies = [
         "earned date": "",
         "rarity": 55.2,
         "description": "Defeat a summon in battle.",
-        "img": "ps5/finalfantasyviiremake/35"
+        "img": "35"
       },
       {
         "id": 36,
@@ -361,7 +362,7 @@ var trophies = [
         "earned date": "",
         "rarity": 35.2,
         "description": "Complete all squat challenges.",
-        "img": "ps5/finalfantasyviiremake/36"
+        "img": "36"
       },
       {
         "id": 37,
@@ -371,7 +372,7 @@ var trophies = [
         "earned date": "",
         "rarity": 36.2,
         "description": "Received a gift from Andrea for being a dance superstar.",
-        "img": "ps5/finalfantasyviiremake/37"
+        "img": "37"
       },
       {
         "id": 38,
@@ -381,7 +382,7 @@ var trophies = [
         "earned date": "",
         "rarity": 39.4,
         "description": "Emerge victorious from a colosseum sparring session.",
-        "img": "ps5/finalfantasyviiremake/38"
+        "img": "38"
       },
       {
         "id": 39,
@@ -391,7 +392,7 @@ var trophies = [
         "earned date": "",
         "rarity": 50.8,
         "description": "Obtain three bridal candidate outfits.",
-        "img": "ps5/finalfantasyviiremake/39"
+        "img": "39"
       },
       {
         "id": 40,
@@ -401,7 +402,7 @@ var trophies = [
         "earned date": "",
         "rarity": 8.4,
         "description": "Obtain all nine bridal candidate outfits.",
-        "img": "ps5/finalfantasyviiremake/40"
+        "img": "40"
       },
       {
         "id": 41,
@@ -411,7 +412,7 @@ var trophies = [
         "earned date": "",
         "rarity": 21.6,
         "description": "Complete all Hard difficulty Whack-a-Box challenges.",
-        "img": "ps5/finalfantasyviiremake/41"
+        "img": "41"
       },
       {
         "id": 42,
@@ -421,7 +422,7 @@ var trophies = [
         "earned date": "",
         "rarity": 20.3,
         "description": "Complete all pull-up challenges.",
-        "img": "ps5/finalfantasyviiremake/42"
+        "img": "42"
       },
       {
         "id": 43,
@@ -431,7 +432,7 @@ var trophies = [
         "earned date": "",
         "rarity": 30.4,
         "description": "Receive a letter from an angel.",
-        "img": "ps5/finalfantasyviiremake/43"
+        "img": "43"
       },
       {
         "id": 44,
@@ -441,7 +442,7 @@ var trophies = [
         "earned date": "",
         "rarity": 28.7,
         "description": "Witness all Johnny-related incidents.",
-        "img": "ps5/finalfantasyviiremake/44"
+        "img": "44"
       },
       {
         "id": 45,
@@ -451,7 +452,7 @@ var trophies = [
         "earned date": "",
         "rarity": 12.7,
         "description": "Complete all quests.",
-        "img": "ps5/finalfantasyviiremake/45"
+        "img": "45"
       },
       {
         "id": 46,
@@ -461,7 +462,7 @@ var trophies = [
         "earned date": "",
         "rarity": 14.2,
         "description": "Collect all music discs.",
-        "img": "ps5/finalfantasyviiremake/46"
+        "img": "46"
       },
       {
         "id": "",
@@ -471,7 +472,7 @@ var trophies = [
         "earned date": "",
         "rarity": 20.8,
         "description": "Attain level 50 with a character.",
-        "img": "ps5/finalfantasyviiremake/47"
+        "img": "47"
       },
       {
         "id": "",
@@ -481,7 +482,7 @@ var trophies = [
         "earned date": "",
         "rarity": 11.9,
         "description": "Deal 300% damage to a staggered enemy.",
-        "img": "ps5/finalfantasyviiremake/48"
+        "img": "48"
       },
       {
         "id": "",
@@ -491,7 +492,7 @@ var trophies = [
         "earned date": "",
         "rarity": 15.3,
         "description": "Complete all battle intel reports.",
-        "img": "ps5/finalfantasyviiremake/49"
+        "img": "49"
       },
       {
         "id": "",
@@ -501,7 +502,7 @@ var trophies = [
         "earned date": "",
         "rarity": 13.2,
         "description": "Learn all weapon abilities.",
-        "img": "ps5/finalfantasyviiremake/50"
+        "img": "50"
       },
       {
         "id": "",
@@ -511,7 +512,7 @@ var trophies = [
         "earned date": "",
         "rarity": 8.5,
         "description": "Learn all enemy skills.",
-        "img": "ps5/finalfantasyviiremake/51"
+        "img": "51"
       },
       {
         "id": "",
@@ -521,7 +522,7 @@ var trophies = [
         "earned date": "",
         "rarity": 11.1,
         "description": "Defeat a malboro.",
-        "img": "ps5/finalfantasyviiremake/52"
+        "img": "52"
       },
       {
         "id": "",
@@ -531,7 +532,7 @@ var trophies = [
         "earned date": "",
         "rarity": 8.6,
         "description": "Defeat the Pride and Joy prototype.",
-        "img": "ps5/finalfantasyviiremake/53"
+        "img": "53"
       },
       {
         "id": "",
@@ -541,7 +542,7 @@ var trophies = [
         "earned date": "",
         "rarity": 8.7,
         "description": "Complete all chapters on Hard difficulty.",
-        "img": "ps5/finalfantasyviiremake/54"
+        "img": "54"
       }
     ]
   }
