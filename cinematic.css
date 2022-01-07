@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'HelveticaNeueLTRoman';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Helvetica Neue LT Roman'), url('Helvetica Neue LT 55 Roman.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueLTProTh' ;
+    src: url("HelveticaNeueLTProTh.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'HelveticaNeueLTProCn' ;
+    src: url("HelveticaNeueLTProCn.otf") format("opentype");
+}
+
+body {
+  width: 1920px;
+  height: 1080px;
+  font-family:'Helvetica Neue LT Roman';
+
+}
+
+.topBar {
+  position: absolute;
+  top: 0px;
+  width: 1920px;
+  height: 100px;
+  background-color: rgba(0,0,0,0.75);
+}
+
+.bottomBar {
+  position: absolute;
+  bottom: 0px;
+  width: 1920px;
+  min-height: 100px;
+  background-color: rgba(0,0,0,0.75);
+}
+
+.nameContainer {
+  width: 900px;
+  padding: 0px 50px;
+  color: #e0e0e0;
+  text-shadow: 1px 1px #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imgContainer {
+  height: 100px;
+  padding: 5px 0px 5px 0px;
+}
+
+img.imgContainer {
+  height: 100%;
+}
+
+.progressContainer {
+  text-transform: uppercase;
+  padding: 0px 50px;
+  width: 900px;
+  color: #e0e0e0;
+  text-shadow: 1px 1px #000000;
+}
+
+span.topText {
+  text-transform: uppercase;
+  font-size: 2em;
+}
+
+.trophiesHeader {
+  padding: 0px 50px;
+  text-transform: uppercase;
+  color: #e0e0e0;
+  text-shadow: 1px 1px #000000;
+}
+
+span.bottomText {
+  font-size: 2em;
+}
+
+.topImg {
+  height: 100%;
+}
+
+span.progressText {
+  font-size: 2em;
+  color: white;
+
+}
+
+.progress {
+  width: 400px;
+  margin-left: 20px;
+}
+
+.troCase {
+  width: 1650px;
+}
+
+img.trophyImg {
+  position: relative;
+  float: left;
+  height: 54px;
+}
+
+img.notEarned {
+  filter: grayscale(1) brightness(0.75) opacity(0.75);
+}
