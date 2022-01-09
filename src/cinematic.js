@@ -110,19 +110,34 @@ function trophyInfoHandler(trophies) {
   const id = trophies[0].trophyID;
 
   const div = document.getElementById('trophyInfo');
-  const troCase = document.createElement('div');
-  troCase.classList.add('troCase');
-  div.appendChild(troCase);
 
-  trophies[0].trophies.forEach((item) => {
-    var trophyImg = document.createElement('img');
-    trophyImg.classList.add('trophyImg');
-    if (item.status == "Not earned" || item.status == "Hidden")
-      trophyImg.classList.add('notEarned');
-    trophyImg.src = "../../trophyImg/" + version + "/" + id + "/" + item.img + ".png";
-    trophyImg.alt = item.name;
-    troCase.appendChild(trophyImg);
-  });
+  var start = 0;
+  var end = 20;
+  const next = end;
+  var pages = Math.floor(trophies[0].trophies.length / next) + 1;
+  var list = [];
+
+  for(i=0; i<pages; i++) {
+    var troCase = document.createElement('div');
+    troCase.classList.add('troCase');
+    div.appendChild(troCase);
+    list[i] = trophies[0].trophies.slice(start, end);
+    currentList = list[i];
+
+    currentList.forEach((item) => {
+      var trophyImg = document.createElement('img');
+      trophyImg.classList.add('trophyImg');
+      if (item.status == "Not earned" || item.status == "Hidden")
+        trophyImg.classList.add('notEarned');
+      trophyImg.src = "../../trophyImg/" + version + "/" + id + "/" + item.img + ".png";
+      trophyImg.alt = item.name;
+      troCase.appendChild(trophyImg);
+    });
+    start += next;
+    end += next;
+
+  }
+
 }
 
 
@@ -138,7 +153,6 @@ var myIndex = 0;
 
 carousel();
 
-
 function carousel() {
   var index;
   var x = document.getElementsByClassName("topText");
@@ -148,5 +162,21 @@ function carousel() {
   myIndex++;
   if (myIndex > x.length) {myIndex = 1}
   x[myIndex-1].style.display = "block";
-  setTimeout(carousel, 5000); // Change image every 2 seconds
+  setTimeout(carousel, 600000); // Change image every 2 seconds
+}
+
+var myIndex2 = 0;
+
+carousel2();
+
+function carousel2() {
+  var index2;
+  var y = document.getElementsByClassName("troCase");
+  for (index2 = 0; index2 < y.length; index2++) {
+    y[index2].style.display = "none";
+  }
+  myIndex2++;
+  if (myIndex2 > y.length) {myIndex2 = 1}
+  y[myIndex2-1].style.display = "block";
+  setTimeout(carousel2, 300000); // Change image every 2 seconds
 }

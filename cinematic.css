@@ -26,16 +26,16 @@ body {
   position: absolute;
   top: 0px;
   width: 1920px;
-  height: 100px;
-  background-color: rgba(0,0,0,0.75);
+  height: 60px;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .bottomBar {
   position: absolute;
   bottom: 0px;
   width: 1920px;
-  min-height: 100px;
-  background-color: rgba(0,0,0,0.75);
+  min-height: 60px;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .nameContainer {
@@ -49,8 +49,7 @@ body {
 }
 
 .imgContainer {
-  height: 100px;
-  padding: 5px 0px 5px 0px;
+  height: 60px;
 }
 
 img.imgContainer {
@@ -58,16 +57,16 @@ img.imgContainer {
 }
 
 .progressContainer {
+  width: 900px;
   text-transform: uppercase;
   padding: 0px 50px;
-  width: 900px;
   color: #e0e0e0;
   text-shadow: 1px 1px #000000;
 }
 
 span.topText {
   text-transform: uppercase;
-  font-size: 2em;
+  font-size: 2.4em;
 }
 
 .trophiesHeader {
@@ -78,7 +77,7 @@ span.topText {
 }
 
 span.bottomText {
-  font-size: 2em;
+  font-size: 2.4em;
 }
 
 .topImg {
@@ -86,7 +85,7 @@ span.bottomText {
 }
 
 span.progressText {
-  font-size: 2em;
+  font-size: 2.4em;
   color: white;
 
 }
@@ -97,15 +96,16 @@ span.progressText {
 }
 
 .troCase {
-  width: 1650px;
+  width: 1200px;
 }
 
 img.trophyImg {
   position: relative;
   float: left;
-  height: 54px;
+  height: 50px;
+  margin: 5px;
 }
 
 img.notEarned {
-  filter: grayscale(1) brightness(0.75) opacity(0.75);
+  filter: grayscale(1) brightness(0.75) opacity(0.5);
 }
