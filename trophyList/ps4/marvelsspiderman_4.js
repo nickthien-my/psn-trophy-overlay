@@ -9,7 +9,7 @@ var trophies = [
         "name": "The City is My Family",
         "grade": "Gold",
         "img": "1",
-        "status": "Not earned",
+        "status": "Earned",
         "rarity": 6,
         "description": "100% complete CTNS: Turf Wars"
       },
@@ -17,7 +17,7 @@ var trophies = [
         "name": "Turning the Screw",
         "grade": "Silver",
         "img": "2",
-        "status": "Not earned",
+        "status": "Earned",
         "rarity": 3.8,
         "description": "Get Spectacular or better in all Screwball Challenges"
       },
@@ -49,7 +49,7 @@ var trophies = [
         "name": "Prohibition",
         "grade": "Bronze",
         "img": "6",
-        "status": "Hidden",
+        "status": "Earned",
         "rarity": 7.4,
         "description": "Take down each Hammerhead Front"
       },
@@ -57,7 +57,7 @@ var trophies = [
         "name": "The Gang War",
         "grade": "Bronze",
         "img": "7",
-        "status": "Not earned",
+        "status": "Earned",
         "rarity": 7.3,
         "description": "Complete all Crimes in a district"
       }
